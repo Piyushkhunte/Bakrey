@@ -1,0 +1,26 @@
+# Piyush's Bakery
+
+> Freshly baked cakes, pastries, breads, cookies, and custom bakery products.
+
+## About
+
+Piyush's Bakery is a bakery website showcasing freshly prepared bakery products and custom orders.
+
+## Products
+
+The bakery offers cakes, pastries, breads, cookies, and other freshly baked products.
+
+## Important Pages
+
+- Home: https://www.yourbakerydomain.com/
+- Products: https://www.yourbakerydomain.com/products
+- About: https://www.yourbakerydomain.com/about
+- Contact: https://www.yourbakerydomain.com/contact
+
+## Contact
+
+For current product availability, prices, custom orders, and other inquiries, use the contact page on the website.
+
+## Content Policy
+
+Product availability, prices, and business information may change. The website is the authoritative source for current information.
