@@ -17,6 +17,9 @@ create table if not exists public.customer_reviews (
 
 alter table public.newsletter_signups enable row level security;
 alter table public.customer_reviews enable row level security;
+-- Development connection-test table. Keep it inaccessible to public API roles
+-- unless an explicit policy is added for its intended use.
+alter table if exists public.test_products enable row level security;
 
 -- Reviews displayed publicly; newsletter writes happen only from the protected API route.
 create policy "Featured reviews are publicly visible" on public.customer_reviews
