@@ -1,4 +1,4 @@
- import { client } from "../sanity/lib/client";
+import { client } from "../sanity/lib/client";
 import ProductMenu from "../app/components/productMenu";
 
 const quickBakes = [
@@ -50,7 +50,7 @@ export default async function Home() {
       next: {
         revalidate: 0,
       },
-    }
+    },
   );
 
   return (
@@ -109,20 +109,22 @@ export default async function Home() {
             </a>
           </div>
 
-          <div className="hidden items-center gap-3 sm:flex">
-            <a
-              href="tel:+919000000000"
-              className="text-xs font-bold text-[#825b4a]"
-            >
-              Call to pre-order
-            </a>
+          <div className="absolute right-0 top-12 w-56 rounded-2xl border border-[#4b2719]/10 bg-[#fffaf2] p-5 shadow-xl">
+            <div className="grid grid-cols-2 gap-4 text-sm font-semibold">
+              <a href="#menu">Our bakes</a>
+              <a href="#offers">Offers</a>
+              <a href="#story">Our story</a>
+              <a href="#reviews">Reviews</a>
+              <a href="#visit">Visit us</a>
 
-            <a
-              href="tel:+919000000000"
-              className="rounded-full bg-[#4b2719] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#d86436]"
-            >
-              Order now →
-            </a>
+              <a href="/pre-order" className="text-[#b64c2d]">
+                Pre-Order
+              </a>
+
+              <a href="/order" className="font-bold text-[#b64c2d]">
+                Order Now
+              </a>
+            </div>
           </div>
 
           <details className="relative lg:hidden">
@@ -407,10 +409,7 @@ export default async function Home() {
       </section>
 
       {/* REVIEWS */}
-      <section
-        id="reviews"
-        className="mx-auto max-w-7xl px-5 py-20 lg:px-8"
-      >
+      <section id="reviews" className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
         <div className="text-center">
           <p className="eyebrow">From our lovely customers</p>
 
@@ -528,9 +527,7 @@ export default async function Home() {
               <a href="tel:+919000000000">Call to order</a>
               <a href="https://wa.me/919000000000">WhatsApp us</a>
               <a href="#visit">Delivery & pickup</a>
-              <a href="mailto:hello@piyushsbakery.in">
-                hello@piyushsbakery.in
-              </a>
+              <a href="mailto:hello@piyushsbakery.in">hello@piyushsbakery.in</a>
             </div>
           </div>
 

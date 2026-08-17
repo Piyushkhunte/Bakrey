@@ -123,10 +123,10 @@ export default function ProductMenu({ products }: ProductMenuProps) {
                 )}
 
                 <a
-                  href="tel:+919000000000"
+                  href="tel:/order"
                   className="mt-3 inline-block text-[10px] font-bold uppercase tracking-wider text-[#6d5145] transition hover:text-[#d86436]"
                 >
-                  Call to order +
+                  Order online +
                 </a>
               </div>
             </article>
