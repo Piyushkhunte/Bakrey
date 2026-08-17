@@ -1,5 +1,7 @@
 import { client } from "../sanity/lib/client";
-import ProductMenu from "../app/components/productMenu";
+import ProductMenu from "./components/productMenu";
+import WelcomeToast from "./components/WelcomeToast";
+import CartButton from "./components/CartButton";
 
 const quickBakes = [
   "Tea cakes",
@@ -26,6 +28,47 @@ const reviews = [
     "Pune",
     "Our daughter asks for the strawberry cake for every celebration.",
   ],
+];
+const faqs = [
+  {
+    question: "Do you offer same-day delivery?",
+    answer:
+      "Yes. We offer same-day delivery for eligible orders placed during our operating hours. Delivery availability can depend on your location and the day's order volume.",
+  },
+  {
+    question: "Is home delivery free?",
+    answer:
+      "Home delivery is free on orders above ₹200. Delivery charges may apply to smaller orders depending on the delivery location.",
+  },
+  {
+    question: "Can I pre-order a birthday or custom cake?",
+    answer:
+      "Yes. For birthday cakes, custom designs, or larger orders, use the Pre-Order option or contact our bakery team directly so we can confirm the design, size, price, and pickup or delivery time.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer:
+      "Online orders can be paid securely through Razorpay. Available payment options are shown during checkout.",
+  },
+  {
+    question: "Can I cancel or modify my order?",
+    answer:
+      "Cancellation or modification depends on how far your order has progressed. Contact us as soon as possible after placing the order and we will confirm what can be changed.",
+  },
+  {
+    question: "Where are you located?",
+    answer:
+      "Piyush's Bakery is located near Bharati Vidyapeeth, Pune, Maharashtra.",
+  },
+  {
+    question: "What are your opening hours?",
+    answer: "We are open every day from 8:00 AM to 10:00 PM.",
+  },
+  {
+    question: "How can I contact the bakery?",
+    answer:
+      "You can call us, contact us on WhatsApp, or use the email address shown in the Customer Care section of the footer.",
+  },
 ];
 
 export default async function Home() {
@@ -104,45 +147,99 @@ export default async function Home() {
             <a href="#reviews" className="hover:text-[#d86436]">
               Reviews
             </a>
+            <a href="#faq" className="hover:text-[#d86436]">
+              FAQ
+            </a>
             <a href="#visit" className="hover:text-[#d86436]">
               Visit us
             </a>
           </div>
 
-          <div className="absolute right-0 top-12 w-56 rounded-2xl border border-[#4b2719]/10 bg-[#fffaf2] p-5 shadow-xl">
-            <div className="grid grid-cols-2 gap-4 text-sm font-semibold">
-              <a href="#menu">Our bakes</a>
-              <a href="#offers">Offers</a>
-              <a href="#story">Our story</a>
-              <a href="#reviews">Reviews</a>
-              <a href="#visit">Visit us</a>
-
-              <a href="/pre-order" className="text-[#b64c2d]">
-                Pre-Order
-              </a>
-
-              <a href="/order" className="font-bold text-[#b64c2d]">
-                Order Now
-              </a>
-            </div>
+          <div className="hidden items-center gap-3 sm:flex">
+            <CartButton />
+            <a
+              href="/order"
+              className="rounded-full bg-[#4b2719] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#d86436]"
+            >
+              Order now →
+            </a>
           </div>
 
+          {/* MOBILE HAMBURGER MENU */}
           <details className="relative lg:hidden">
             <summary
-              className="grid size-10 cursor-pointer list-none place-items-center rounded-full border border-[#4b2719]/15"
+              className="grid size-10 cursor-pointer list-none place-items-center rounded-full border border-[#4b2719]/15 text-lg"
               aria-label="Open menu"
             >
               ☰
             </summary>
 
-            <div className="absolute right-0 top-12 w-56 rounded-2xl border border-[#4b2719]/10 bg-[#fffaf2] p-5 shadow-xl">
-              <div className="grid grid-cols-2 gap-4 text-sm font-semibold">
-                <a href="#menu">Our bakes</a>
-                <a href="#offers">Offers</a>
-                <a href="#story">Our story</a>
-                <a href="#reviews">Reviews</a>
-                <a href="#visit">Visit us</a>
-                <a href="tel:+919000000000">Call to pre-order</a>
+            <div className="absolute right-0 top-12 z-50 w-64 rounded-2xl border border-[#4b2719]/10 bg-[#fffaf2] p-5 shadow-xl">
+              <div className="grid gap-1 text-sm font-semibold">
+                <a
+                  href="#menu"
+                  className="rounded-xl px-3 py-2.5 transition hover:bg-[#f2e1cb] hover:text-[#d86436]"
+                >
+                  Our bakes
+                </a>
+
+                <a
+                  href="#offers"
+                  className="rounded-xl px-3 py-2.5 transition hover:bg-[#f2e1cb] hover:text-[#d86436]"
+                >
+                  Offers
+                </a>
+
+                <a
+                  href="#story"
+                  className="rounded-xl px-3 py-2.5 transition hover:bg-[#f2e1cb] hover:text-[#d86436]"
+                >
+                  Our story
+                </a>
+
+                <a
+                  href="#reviews"
+                  className="rounded-xl px-3 py-2.5 transition hover:bg-[#f2e1cb] hover:text-[#d86436]"
+                >
+                  Reviews
+                </a>
+
+                <a
+                  href="#faq"
+                  className="rounded-xl px-3 py-2.5 transition hover:bg-[#f2e1cb] hover:text-[#d86436]"
+                >
+                  FAQ
+                </a>
+
+                <a
+                  href="#visit"
+                  className="rounded-xl px-3 py-2.5 transition hover:bg-[#f2e1cb] hover:text-[#d86436]"
+                >
+                  Visit us
+                </a>
+
+                <div className="my-2 border-t border-[#4b2719]/10" />
+
+                <a
+                  href="/cart"
+                  className="rounded-xl bg-[#4b2719] px-3 py-2.5 font-bold text-white transition hover:bg-[#d86436]"
+                >
+                  🛒 View Cart
+                </a>
+
+                <a
+                  href="/pre-order"
+                  className="rounded-xl px-3 py-2.5 font-bold text-[#b64c2d] transition hover:bg-[#f2e1cb]"
+                >
+                  Pre-Order
+                </a>
+
+                <a
+                  href="/order"
+                  className="rounded-xl bg-[#d86436] px-3 py-2.5 text-center font-bold text-white transition hover:bg-[#b64c2d]"
+                >
+                  Order Now →
+                </a>
               </div>
             </div>
           </details>
@@ -187,7 +284,7 @@ export default async function Home() {
               </a>
 
               <a
-                href="tel:+919000000000"
+                href="tel:+918767342441"
                 className="rounded-full border border-[#4b2719]/20 px-6 py-3.5 text-sm font-bold transition hover:border-[#4b2719]"
               >
                 Call to order
@@ -441,6 +538,54 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section id="faq" className="bg-[#f2e1cb] px-5 py-20 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center">
+            <p className="eyebrow">Need to know?</p>
+
+            <h2 className="section-title">Frequently asked questions</h2>
+
+            <p className="mx-auto mt-3 max-w-2xl text-[#816456]">
+              Quick answers about ordering, delivery, cakes, payments, and
+              visiting Piyush&apos;s Bakery.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[1.5rem] border border-[#4b2719]/10 bg-[#fffaf2]">
+            {faqs.map((faq, index) => (
+              <details
+                key={faq.question}
+                className="group border-b border-[#4b2719]/10 last:border-b-0"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-6 py-5 text-left font-bold text-[#4b2719] marker:hidden">
+                  <span>{faq.question}</span>
+
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#f2e1cb] text-lg transition-transform duration-200 group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+
+                <div className="px-6 pb-5 pr-16 text-sm leading-6 text-[#76584a]">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm text-[#76584a]">Still have a question?</p>
+
+            <a
+              href="#visit"
+              className="mt-2 inline-block font-bold text-[#b64c2d] underline underline-offset-4"
+            >
+              Contact our bakery team →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* VISIT */}
       <section
         id="visit"
@@ -517,6 +662,7 @@ export default async function Home() {
               <a href="#offers">Offers</a>
               <a href="#story">Our story</a>
               <a href="#reviews">Customer reviews</a>
+              <a href="#faq">Frequently asked questions</a>
             </div>
           </div>
 
@@ -561,28 +707,30 @@ export default async function Home() {
         <div className="mx-auto mt-10 flex max-w-7xl flex-col justify-between gap-3 border-t border-[#4b2719]/10 pt-5 text-xs text-[#87695a] sm:flex-row">
           <p>© 2026 Piyush&apos;s Bakery. All rights reserved.</p>
 
-          <div className="flex gap-5">
-            <a href="#">Privacy policy</a>
-            <a href="#">Terms & conditions</a>
-            <a href="#">Refund & cancellation</a>
+          <div className="flex flex-wrap gap-5">
+            <a
+              href="/privacy-policy"
+              className="transition hover:text-[#d86436]"
+            >
+              Privacy policy
+            </a>
+
+            <a href="/terms" className="transition hover:text-[#d86436]">
+              Terms & conditions
+            </a>
+
+            <a
+              href="/refund-policy"
+              className="transition hover:text-[#d86436]"
+            >
+              Refund & cancellation
+            </a>
           </div>
         </div>
       </footer>
 
       {/* WELCOME TOAST */}
-      <aside
-        role="status"
-        className="welcome-toast fixed bottom-5 right-5 z-[70] flex max-w-sm gap-3 rounded-2xl border border-white/10 bg-[#4b2719] p-4 text-sm font-medium leading-5 text-white shadow-2xl"
-      >
-        <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#d86436]">
-          ✦
-        </span>
-
-        <p>
-          A warm welcome! Get 15% off your first online order — use code
-          WELCOME15.
-        </p>
-      </aside>
+      <WelcomeToast />
     </main>
   );
 }
