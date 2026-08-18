@@ -253,7 +253,9 @@ export default function CheckoutPage() {
 
               showToast(
                 "success",
-                "Payment successful! Your order has been confirmed.",
+                verifyData.smsSent
+                  ? "Payment successful! Your order is confirmed. We've sent confirmation to your phone."
+                  : "Payment successful! Your order is confirmed and being prepared.",
                 2200,
               );
 
@@ -282,6 +284,11 @@ export default function CheckoutPage() {
 
           modal: {
             ondismiss: () => {
+              showToast(
+                "error",
+                "Payment is pending. Your order has been saved; you can complete payment when you are ready.",
+                5000,
+              );
               setLoading(false);
             },
           },

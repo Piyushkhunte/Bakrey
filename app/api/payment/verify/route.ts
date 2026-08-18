@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { createClient } from "@supabase/supabase-js";
+import { sendPaymentConfirmationSms } from "../../../lib/sms";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -73,7 +74,7 @@ export async function POST(request: Request) {
       await supabaseAdmin
         .from("orders")
         .select(
-          "id, razorpay_order_id, payment_status"
+          "id, razorpay_order_id, payment_status, phone, payment_notification_sent"
         )
         .eq("id", orderId)
         .single();
@@ -97,6 +98,7 @@ export async function POST(request: Request) {
       return NextResponse.json({
         success: true,
         message: "Payment already verified.",
+        smsSent: order.payment_notification_sent === true,
       });
     }
 
@@ -126,6 +128,8 @@ export async function POST(request: Request) {
         .update({
           payment_status: "paid",
           razorpay_payment_id,
+          // Keep the existing order-status vocabulary; fulfillment can move it
+          // to "preparing" later if the database schema supports that state.
           order_status: "confirmed",
           updated_at: new Date().toISOString(),
         })
@@ -144,10 +148,31 @@ export async function POST(request: Request) {
       );
     }
 
+    let smsSent = false;
+    if (!order.payment_notification_sent) {
+      try {
+        const sms = await sendPaymentConfirmationSms(order.phone, order.id);
+        smsSent = sms.sent;
+        if (sms.sent) {
+          const { error: notificationError } = await supabaseAdmin
+            .from("orders")
+            .update({ payment_notification_sent: true })
+            .eq("id", order.id)
+            .eq("payment_notification_sent", false);
+          if (notificationError) console.error("Payment SMS status update failed", notificationError.message);
+        } else if (sms.configured) {
+          console.error("Payment SMS provider rejected notification", order.id);
+        }
+      } catch (smsError) {
+        console.error("Payment SMS notification failed", smsError instanceof Error ? smsError.message : "unknown error");
+      }
+    }
+
     return NextResponse.json({
       success: true,
       message: "Payment verified successfully.",
       orderId: order.id,
+      smsSent,
     });
   } catch (error) {
     console.error("Payment verification error:", error);

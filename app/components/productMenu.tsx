@@ -190,7 +190,7 @@ export default function ProductMenu({ products }: ProductMenuProps) {
             {filteredProducts.map((product) => (
               <article
                 key={product._id}
-                className="group overflow-hidden rounded-2xl bg-white shadow-[0_6px_22px_rgba(75,39,25,.07)]"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-[0_6px_22px_rgba(75,39,25,.07)]"
               >
                 {/* IMAGE */}
                 <div className="relative aspect-[4/3] overflow-hidden">
@@ -220,7 +220,7 @@ export default function ProductMenu({ products }: ProductMenuProps) {
                 </div>
 
                 {/* DETAILS */}
-                <div className="p-3.5">
+                <div className="flex flex-1 flex-col p-3.5">
                   <p className="truncate text-[10px] font-semibold uppercase tracking-wider text-[#a57d69]">
                     {product.category?.name ||
                       "Bakery favourite"}
@@ -249,7 +249,7 @@ export default function ProductMenu({ products }: ProductMenuProps) {
                     onClick={() =>
                       handleAddToCart(product)
                     }
-                    className={`mt-4 w-full rounded-full px-4 py-2.5 text-xs font-bold transition ${
+                    className={`mt-auto w-full rounded-full px-4 py-2.5 text-xs font-bold transition ${
                       product.isAvailable === false
                         ? "cursor-not-allowed bg-[#eadfd5] text-[#a58d7d]"
                         : "bg-[#4b2719] text-white hover:bg-[#d86436] active:scale-[0.97]"

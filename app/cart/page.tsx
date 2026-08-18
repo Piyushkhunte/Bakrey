@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { urlFor } from "../../sanity/lib/image";
 import { useCart } from "../context/cartContext";
 
 export default function CartPage() {
@@ -61,7 +62,16 @@ export default function CartPage() {
                 key={item._id}
                 className="flex gap-4 rounded-3xl bg-white p-4 shadow-[0_6px_22px_rgba(75,39,25,.07)]"
               >
-                <div className="grid size-24 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#f2e1cb] text-2xl sm:size-32">
+                <div className="relative grid size-24 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#f2e1cb] text-2xl sm:size-32">
+                  {item.image && (
+                    <img
+                      src={urlFor(item.image).width(256).height(256).fit("crop").url()}
+                      alt={item.name}
+                      width="256"
+                      height="256"
+                      className="absolute inset-0 z-10 size-full object-cover"
+                    />
+                  )}
                   🥐
                 </div>
 

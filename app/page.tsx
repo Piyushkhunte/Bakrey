@@ -2,6 +2,11 @@ import { client } from "../sanity/lib/client";
 import ProductMenu from "./components/productMenu";
 import WelcomeToast from "./components/WelcomeToast";
 import CartButton from "./components/CartButton";
+import Reviews from "./components/Reviews";
+import AIFoodAssistant from "./components/AIFoodAssistant";
+import MSG91OTP from "./components/MSG91OTP";
+
+const bakeryWhatsAppNumber = "918767342441";
 
 const quickBakes = [
   "Tea cakes",
@@ -12,23 +17,10 @@ const quickBakes = [
   "Dessert jars",
 ];
 
-const reviews = [
-  [
-    "Aarav M.",
-    "Student, Bharati Vidyapeeth",
-    "The best post-lecture stop. Their brownies disappear in minutes!",
-  ],
-  [
-    "Neha Kulkarni",
-    "BVP neighbourhood",
-    "Beautiful cakes, thoughtful service, and always so fresh.",
-  ],
-  [
-    "Rohan & family",
-    "Pune",
-    "Our daughter asks for the strawberry cake for every celebration.",
-  ],
-];
+function createWhatsAppLink(message: string) {
+  return `https://wa.me/${bakeryWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+}
+
 const faqs = [
   {
     question: "Do you offer same-day delivery?",
@@ -138,25 +130,35 @@ export default async function Home() {
             <a href="#menu" className="hover:text-[#d86436]">
               Our bakes
             </a>
+
             <a href="#offers" className="hover:text-[#d86436]">
               Offers
             </a>
+
             <a href="#story" className="hover:text-[#d86436]">
               Our story
             </a>
+
             <a href="#reviews" className="hover:text-[#d86436]">
               Reviews
             </a>
+
             <a href="#faq" className="hover:text-[#d86436]">
               FAQ
             </a>
+
             <a href="#visit" className="hover:text-[#d86436]">
               Visit us
             </a>
           </div>
 
           <div className="hidden items-center gap-3 sm:flex">
+            <p className="hidden text-right text-[11px] font-bold leading-4 text-[#76584a] xl:block">
+              Open daily<br />8:00 AM – 12:00 AM
+            </p>
+
             <CartButton />
+
             <a
               href="/order"
               className="rounded-full bg-[#4b2719] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#d86436]"
@@ -219,6 +221,10 @@ export default async function Home() {
                 </a>
 
                 <div className="my-2 border-t border-[#4b2719]/10" />
+
+                <p className="px-3 py-2 text-xs font-bold text-[#76584a]">
+                  Open daily: 8:00 AM – 12:00 AM
+                </p>
 
                 <a
                   href="/cart"
@@ -294,7 +300,9 @@ export default async function Home() {
             <div className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-[#835c4b]/20 pt-5 text-center">
               <p>
                 <b className="block font-display text-2xl">4.9/5</b>
-                <span className="text-[11px] text-[#805f50]">local love</span>
+                <span className="text-[11px] text-[#805f50]">
+                  local love
+                </span>
               </p>
 
               <p>
@@ -330,6 +338,7 @@ export default async function Home() {
 
             <div className="absolute -bottom-5 -left-1 rounded-2xl bg-[#fffaf2] p-4 shadow-lg sm:-left-7">
               <p className="font-display text-xl">Made fresh, daily</p>
+
               <p className="mt-1 text-xs text-[#896b5b]">
                 for your every kind of day
               </p>
@@ -351,8 +360,12 @@ export default async function Home() {
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3 md:gap-0">
           <div className="flex gap-3 md:border-r md:border-white/15">
             <span className="text-xl">✦</span>
+
             <p>
-              <b className="block font-display text-lg">Small-batch goodness</b>
+              <b className="block font-display text-lg">
+                Small-batch goodness
+              </b>
+
               <span className="text-sm text-white/65">
                 Made in our BVP kitchen
               </span>
@@ -361,8 +374,12 @@ export default async function Home() {
 
           <div className="flex gap-3 md:justify-center md:border-r md:border-white/15">
             <span className="text-xl">↗</span>
+
             <p>
-              <b className="block font-display text-lg">Free home delivery</b>
+              <b className="block font-display text-lg">
+                Free home delivery
+              </b>
+
               <span className="text-sm text-white/65">
                 On all orders above ₹200
               </span>
@@ -371,8 +388,12 @@ export default async function Home() {
 
           <div className="flex gap-3 md:justify-end">
             <span className="text-xl">♥</span>
+
             <p>
-              <b className="block font-display text-lg">For every generation</b>
+              <b className="block font-display text-lg">
+                For every generation
+              </b>
+
               <span className="text-sm text-white/65">
                 Little ones, students & families
               </span>
@@ -404,7 +425,10 @@ export default async function Home() {
       </section>
 
       {/* PRODUCTS */}
-      <section id="menu" className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+      <section
+        id="menu"
+        className="mx-auto max-w-7xl px-5 py-16 lg:px-8"
+      >
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Just out of the oven</p>
@@ -438,7 +462,12 @@ export default async function Home() {
               {quickBakes.map((item) => (
                 <a
                   key={item}
-                  href="tel:+919000000000"
+                  href={createWhatsAppLink(
+                    `Hello Piyush's Bakery! I'd like to know the availability and price for ${item.toLowerCase()}.`,
+                  )}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Ask about ${item} on WhatsApp`}
                   className="flex w-full items-center justify-between border-b border-[#6e4532]/10 py-3 text-left text-sm font-semibold last:border-0 hover:text-[#c65334]"
                 >
                   <span>{item}</span>
@@ -452,7 +481,11 @@ export default async function Home() {
             </p>
 
             <a
-              href="tel:+919000000000"
+              href={createWhatsAppLink(
+                "Hello Piyush's Bakery! I'd like to enquire about a birthday or custom cake.",
+              )}
+              target="_blank"
+              rel="noreferrer"
               className="mt-3 inline-block text-sm font-bold text-[#b64c2d] underline underline-offset-4"
             >
               Talk to our cake team
@@ -462,7 +495,10 @@ export default async function Home() {
       </section>
 
       {/* STORY */}
-      <section id="story" className="my-4 overflow-hidden bg-[#e5a073]">
+      <section
+        id="story"
+        className="my-4 overflow-hidden bg-[#e5a073]"
+      >
         <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
           <div className="relative min-h-[390px]">
             <img
@@ -478,20 +514,22 @@ export default async function Home() {
 
           <div className="flex items-center bg-[#f2d6b2] px-7 py-16 lg:px-14">
             <div className="max-w-lg">
-              <p className="eyebrow">The Piyush&apos;s Bakery promise</p>
+              <p className="eyebrow">
+                The Piyush&apos;s Bakery promise
+              </p>
 
               <h2 className="section-title">Joy is homemade.</h2>
 
               <p className="mt-6 leading-7 text-[#6d5145]">
-                Right in the middle of Bharati Vidyapeeth&apos;s everyday rush,
-                we wanted to create a small pause: a warm bakery for students,
-                families, celebrations and simple cravings.
+                Right in the middle of Bharati Vidyapeeth&apos;s everyday
+                rush, we wanted to create a small pause: a warm bakery for
+                students, families, celebrations and simple cravings.
               </p>
 
               <p className="mt-4 leading-7 text-[#6d5145]">
-                We bake in small batches, use ingredients we&apos;d choose for
-                our own table, and make sure something good is always waiting
-                for you.
+                We bake in small batches, use ingredients we&apos;d choose
+                for our own table, and make sure something good is always
+                waiting for you.
               </p>
 
               <a
@@ -505,46 +543,60 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section id="reviews" className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="text-center">
-          <p className="eyebrow">From our lovely customers</p>
+      {/* STRENGTHS */}
+      <section className="bg-[#fff2df] px-5 py-20 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Why choose Piyush&apos;s Bakery</p>
 
-          <h2 className="section-title">Sweet words mean the world</h2>
+            <h2 className="section-title">Our Strengths</h2>
+          </div>
 
-          <p className="mt-3 text-[#816456]">
-            Real smiles from right here in Pune.
-          </p>
-        </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              ["01", "Consistency & excellence"],
+              ["02", "Artisanal quality baked products"],
+              ["03", "Diverse culinary experienced chefs"],
+              ["04", "Ambience and experience"],
+              ["05", "State-of-the-art hygienic kitchen"],
+            ].map(([number, strength]) => (
+              <article
+                key={number}
+                className="rounded-3xl bg-white p-6 shadow-[0_6px_22px_rgba(75,39,25,.07)]"
+              >
+                <p className="text-xs font-extrabold tracking-[.2em] text-[#d86436]">
+                  {number}
+                </p>
 
-        <div className="mt-11 grid gap-5 md:grid-cols-3">
-          {reviews.map(([name, role, quote]) => (
-            <figure
-              key={name}
-              className="rounded-[1.5rem] border border-[#e8d4bf] bg-white p-7"
-            >
-              <div className="mb-5 text-[#db6b40]">★★★★★</div>
-
-              <blockquote className="font-display text-xl leading-7">
-                “{quote}”
-              </blockquote>
-
-              <figcaption className="mt-6 text-sm">
-                <b>{name}</b>
-                <span className="ml-2 text-[#8b6c5c]">· {role}</span>
-              </figcaption>
-            </figure>
-          ))}
+                <h3 className="mt-5 font-display text-2xl leading-7 text-[#4b2719]">
+                  {strength}
+                </h3>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
+      {/* REVIEWS */}
+      <section
+        id="reviews"
+        className="mx-auto max-w-7xl px-5 py-20 lg:px-8"
+      >
+        <Reviews />
+      </section>
+
       {/* FAQ */}
-      <section id="faq" className="bg-[#f2e1cb] px-5 py-20 lg:px-8">
+      <section
+        id="faq"
+        className="bg-[#f2e1cb] px-5 py-20 lg:px-8"
+      >
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <p className="eyebrow">Need to know?</p>
 
-            <h2 className="section-title">Frequently asked questions</h2>
+            <h2 className="section-title">
+              Frequently asked questions
+            </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-[#816456]">
               Quick answers about ordering, delivery, cakes, payments, and
@@ -553,7 +605,7 @@ export default async function Home() {
           </div>
 
           <div className="mt-10 overflow-hidden rounded-[1.5rem] border border-[#4b2719]/10 bg-[#fffaf2]">
-            {faqs.map((faq, index) => (
+            {faqs.map((faq) => (
               <details
                 key={faq.question}
                 className="group border-b border-[#4b2719]/10 last:border-b-0"
@@ -574,7 +626,9 @@ export default async function Home() {
           </div>
 
           <div className="mt-8 text-center">
-            <p className="text-sm text-[#76584a]">Still have a question?</p>
+            <p className="text-sm text-[#76584a]">
+              Still have a question?
+            </p>
 
             <a
               href="#visit"
@@ -593,35 +647,41 @@ export default async function Home() {
       >
         <div className="mx-auto grid max-w-7xl gap-6 px-7 py-12 text-[#fff9ed] md:grid-cols-[1.2fr_.8fr] lg:px-12">
           <div>
-            <p className="eyebrow !text-[#f5ba77]">Come say hello</p>
+            <p className="eyebrow !text-[#f5ba77]">
+              Come say hello
+            </p>
 
             <h2 className="mt-2 font-display text-4xl">
               Your bakery break is nearby.
             </h2>
 
             <p className="mt-4 max-w-lg text-sm leading-6 text-white/70">
-              Near Bharati Vidyapeeth, Pune. Drop by for warm bakes, call for a
-              cake pre-order, or message us for a quick delivery.
+              Near Bharati Vidyapeeth, Pune. Drop by for warm bakes, call
+              for a cake pre-order, or message us for a quick delivery.
             </p>
           </div>
 
           <div className="md:border-l md:border-white/15 md:pl-8">
             <p className="font-bold">Open every day</p>
 
-            <p className="mt-1 text-sm text-white/70">8:00 AM – 10:00 PM</p>
+            <p className="mt-1 text-sm text-white/70">
+              8:00 AM – 10:00 PM
+            </p>
 
-            <p className="mt-5 font-bold">Bharati Vidyapeeth, Pune</p>
+            <p className="mt-5 font-bold">
+              Bharati Vidyapeeth, Pune
+            </p>
 
             <div className="mt-4 flex gap-3">
               <a
-                href="tel:+919000000000"
+                href="tel:+918767342441"
                 className="rounded-full bg-[#d86436] px-4 py-2.5 text-xs font-bold"
               >
                 Call us
               </a>
 
               <a
-                href="https://wa.me/919000000000"
+                href="https://wa.me/918767342441"
                 className="rounded-full border border-white/30 px-4 py-2.5 text-xs font-bold"
               >
                 WhatsApp
@@ -634,6 +694,7 @@ export default async function Home() {
       {/* FOOTER */}
       <footer className="border-t border-[#4b2719]/10 bg-[#f5e7d4] px-5 py-12 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 text-sm text-[#775a4b] sm:grid-cols-2 lg:grid-cols-4">
+          {/* FOOTER BRAND */}
           <div>
             <img
               src="/images/logo.webp"
@@ -654,31 +715,93 @@ export default async function Home() {
             </p>
           </div>
 
+          {/* EXPLORE */}
           <div>
             <p className="footer-heading">Explore</p>
 
             <div className="footer-links">
               <a href="#menu">Today&apos;s bakes</a>
+
               <a href="#offers">Offers</a>
+
               <a href="#story">Our story</a>
+
               <a href="#reviews">Customer reviews</a>
-              <a href="#faq">Frequently asked questions</a>
+
+              <a href="#faq">
+                Frequently asked questions
+              </a>
             </div>
           </div>
 
+          {/* CUSTOMER CARE */}
           <div>
             <p className="footer-heading">Customer care</p>
 
             <div className="footer-links">
-              <a href="tel:+919000000000">Call to order</a>
-              <a href="https://wa.me/919000000000">WhatsApp us</a>
-              <a href="#visit">Delivery & pickup</a>
-              <a href="mailto:hello@piyushsbakery.in">hello@piyushsbakery.in</a>
+              <a href="tel:+918767342441">
+                Call to order
+              </a>
+
+              <a href="https://wa.me/918767342441">
+                WhatsApp us
+              </a>
+
+              <div className="flex items-center gap-2 pt-2">
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Visit us on Instagram"
+                  className="grid size-9 place-items-center rounded-full border border-[#4b2719]/15 text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
+                >
+                  <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                </a>
+
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Visit us on Facebook"
+                  className="grid size-9 place-items-center rounded-full border border-[#4b2719]/15 text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
+                >
+                  <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden="true">
+                    <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.2v2H8v3h2.4v8h3.1Z" />
+                  </svg>
+                </a>
+
+                <a
+                  href="https://x.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Visit us on X"
+                  className="grid size-9 place-items-center rounded-full border border-[#4b2719]/15 text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
+                >
+                  <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden="true">
+                    <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 15.6 6.4 22H3.2l7.3-8.4L2.8 2h6.4L13.6 8l5.3-6ZM17.8 19.8h1.7L8.3 4.1H6.5l11.3 15.7Z" />
+                  </svg>
+                </a>
+              </div>
+
+              <a href="#visit">
+                Delivery & pickup
+              </a>
+
+              <a href="mailto:hello@piyushsbakery.in">
+                hello@piyushsbakery.in
+              </a>
             </div>
           </div>
 
+          {/* NEWSLETTER */}
           <div>
-            <p className="footer-heading">Stay in the loop</p>
+            <p className="footer-heading">
+              Stay in the loop
+            </p>
 
             <p className="mt-3 text-xs leading-5">
               Fresh bakes, new flavours and sweet little offers.
@@ -697,15 +820,21 @@ export default async function Home() {
                 className="min-w-0 flex-1 bg-transparent px-3 text-xs outline-none"
               />
 
-              <button className="rounded-full bg-[#d86436] px-3 py-2 text-xs font-bold text-white">
+              <button
+                type="submit"
+                className="rounded-full bg-[#d86436] px-3 py-2 text-xs font-bold text-white"
+              >
                 Join
               </button>
             </form>
           </div>
         </div>
 
+        {/* FOOTER BOTTOM */}
         <div className="mx-auto mt-10 flex max-w-7xl flex-col justify-between gap-3 border-t border-[#4b2719]/10 pt-5 text-xs text-[#87695a] sm:flex-row">
-          <p>© 2026 Piyush&apos;s Bakery. All rights reserved.</p>
+          <p>
+            © 2026 Piyush&apos;s Bakery. All rights reserved.
+          </p>
 
           <div className="flex flex-wrap gap-5">
             <a
@@ -715,7 +844,10 @@ export default async function Home() {
               Privacy policy
             </a>
 
-            <a href="/terms" className="transition hover:text-[#d86436]">
+            <a
+              href="/terms"
+              className="transition hover:text-[#d86436]"
+            >
               Terms & conditions
             </a>
 
@@ -728,6 +860,13 @@ export default async function Home() {
           </div>
         </div>
       </footer>
+
+      {/* PHONE VERIFICATION */}
+      <section className="mx-auto w-full max-w-7xl px-5 pb-16 lg:px-8">
+        <MSG91OTP />
+      </section>
+
+      <AIFoodAssistant />
 
       {/* WELCOME TOAST */}
       <WelcomeToast />

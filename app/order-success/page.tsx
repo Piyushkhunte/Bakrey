@@ -34,7 +34,8 @@ export default async function OrderSuccessPage({
           {/* DESCRIPTION */}
           <p className="mx-auto mt-5 max-w-lg leading-7 text-[#76584a]">
             Your payment has been successfully verified and
-            your bakery order has been confirmed.
+            your bakery order has been confirmed. Our kitchen is now
+            preparing your fresh bakes.
           </p>
 
           {/* ORDER ID */}
@@ -56,7 +57,7 @@ export default async function OrderSuccessPage({
               ✓
             </span>
 
-            Payment verified
+            Payment verified · Order preparing
           </div>
 
           {/* BUTTONS */}
