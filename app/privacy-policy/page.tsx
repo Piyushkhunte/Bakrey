@@ -1,4 +1,22 @@
-"use client";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "Read Piyush's Bakery privacy policy covering customer information, orders, payments, cookies, data security, retention and third-party services.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Piyush's Bakery",
+    description:
+      "Learn how Piyush's Bakery collects, uses and protects customer information.",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Piyush's Bakery",
+  },
+};
 
 export default function PrivacyPolicyPage() {
   return (

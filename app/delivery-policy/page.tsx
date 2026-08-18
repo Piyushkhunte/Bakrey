@@ -1,3 +1,23 @@
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Delivery Policy",
+  description:
+    "Read Piyush's Bakery delivery policy, including delivery areas, charges, addresses, receiving orders, fresh product handling and pickup information.",
+  alternates: {
+    canonical: "/delivery-policy",
+  },
+  openGraph: {
+    title: "Delivery Policy | Piyush's Bakery",
+    description:
+      "Learn about delivery areas, charges, order delivery and pickup at Piyush's Bakery in Pune.",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Piyush's Bakery",
+  },
+};
+
 export default function DeliveryPolicyPage() {
   return (
     <main className="min-h-screen bg-[#fffaf2] text-[#4b2719]">
@@ -160,7 +180,7 @@ function PolicyCard({
   children,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <article className="rounded-3xl border border-[#4b2719]/10 bg-white p-6 shadow-[0_8px_30px_rgba(75,39,25,.05)] md:p-8">

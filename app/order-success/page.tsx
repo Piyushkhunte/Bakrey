@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Order Confirmed",
+  description:
+    "Your Piyush's Bakery payment has been verified and your order has been confirmed.",
+  alternates: {
+    canonical: "/order-success",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 type OrderSuccessPageProps = {
   searchParams: Promise<{
@@ -15,7 +29,6 @@ export default async function OrderSuccessPage({
     <main className="min-h-screen bg-[#fffaf2] px-5 py-16 text-[#402b22]">
       <div className="mx-auto flex min-h-[70vh] max-w-2xl items-center justify-center">
         <div className="w-full rounded-[2rem] bg-white p-8 text-center shadow-[0_10px_40px_rgba(75,39,25,.08)] md:p-12">
-
           {/* SUCCESS ICON */}
           <div className="mx-auto grid size-20 place-items-center rounded-full bg-[#4b2719] text-3xl font-bold text-white">
             ✓
@@ -33,9 +46,8 @@ export default async function OrderSuccessPage({
 
           {/* DESCRIPTION */}
           <p className="mx-auto mt-5 max-w-lg leading-7 text-[#76584a]">
-            Your payment has been successfully verified and
-            your bakery order has been confirmed. Our kitchen is now
-            preparing your fresh bakes.
+            Your payment has been successfully verified and your bakery order
+            has been confirmed. Our kitchen is now preparing your fresh bakes.
           </p>
 
           {/* ORDER ID */}
@@ -76,7 +88,6 @@ export default async function OrderSuccessPage({
               Order more
             </Link>
           </div>
-
         </div>
       </div>
     </main>

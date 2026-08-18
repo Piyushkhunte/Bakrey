@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { client } from "../sanity/lib/client";
 import ProductMenu from "./components/productMenu";
 import WelcomeToast from "./components/WelcomeToast";
@@ -6,6 +7,23 @@ import Reviews from "./components/Reviews";
 import AIFoodAssistant from "./components/AIFoodAssistant";
 import MSG91OTP from "./components/MSG91OTP";
 import CookieConsent from "./components/CookieConsent";
+
+export const metadata: Metadata = {
+  title: "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
+  description:
+    "Piyush's Bakery near Bharati Vidyapeeth, Pune offers freshly baked cakes, pastries, breads, snacks, savouries, desserts and more with delivery and pickup.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
+    description:
+      "Fresh cakes, pastries, breads, snacks, savouries and desserts near Bharati Vidyapeeth, Pune.",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Piyush's Bakery",
+  },
+};
 
 const bakeryWhatsAppNumber = "918767342441";
 
@@ -477,20 +495,37 @@ export default async function Home() {
               ))}
             </div>
 
-            <p className="mt-5 text-sm leading-6 text-[#76584a]">
-              Planning a birthday or college event?
-            </p>
+            <div className="mt-5 rounded-2xl border border-[#6e4532]/10 bg-[#fffaf2]/70 p-4">
+              <p className="text-sm font-bold text-[#4b2719]">
+                Planning something special?
+              </p>
 
-            <a
-              href={createWhatsAppLink(
-                "Hello Piyush's Bakery! I'd like to enquire about a birthday or custom cake.",
-              )}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 inline-block text-sm font-bold text-[#b64c2d] underline underline-offset-4"
-            >
-              Talk to our cake team
-            </a>
+              <p className="mt-2 text-sm leading-6 text-[#76584a]">
+                Birthday cake, custom design, college event, party box or a
+                larger bakery order? Talk directly with our team about
+                flavours, sizes, pricing and availability.
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a
+                  href={createWhatsAppLink(
+                    "Hello Piyush's Bakery! I'd like to discuss a birthday, custom cake, party order or bulk bakery order.",
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-[#4b2719] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#d86436]"
+                >
+                  Talk to our cake team →
+                </a>
+
+                <a
+                  href="/pre-order"
+                  className="rounded-full border border-[#4b2719]/20 px-4 py-2.5 text-xs font-bold text-[#4b2719] transition hover:bg-[#f2e1cb]"
+                >
+                  Pre-order
+                </a>
+              </div>
+            </div>
           </aside>
         </div>
       </section>
@@ -732,6 +767,18 @@ export default async function Home() {
               <a href="#faq">
                 Frequently asked questions
               </a>
+
+              <a href="/order">
+                Order online
+              </a>
+
+              <a href="/pre-order">
+                Pre-order a cake
+              </a>
+
+              <a href="/delivery-policy">
+                Delivery policy
+              </a>
             </div>
           </div>
 
@@ -794,6 +841,18 @@ export default async function Home() {
 
               <a href="mailto:hello@piyushsbakery.in">
                 hello@piyushsbakery.in
+              </a>
+
+              <a href="/privacy-policy">
+                Privacy policy
+              </a>
+
+              <a href="/terms">
+                Terms & conditions
+              </a>
+
+              <a href="/refund-policy">
+                Refund & cancellation
               </a>
             </div>
           </div>

@@ -1,9 +1,26 @@
-"use client";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Refund & Cancellation Policy",
+  description:
+    "Read Piyush's Bakery refund and cancellation policy covering order cancellations, fresh and customised products, damaged orders, failed payments and refunds.",
+  alternates: {
+    canonical: "/refund-policy",
+  },
+  openGraph: {
+    title: "Refund & Cancellation Policy | Piyush's Bakery",
+    description:
+      "Learn about cancellations, refunds, damaged orders and payment issues at Piyush's Bakery.",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Piyush's Bakery",
+  },
+};
 
 export default function RefundPolicyPage() {
   return (
     <main className="min-h-screen bg-[#fffaf2] text-[#4b2719]">
-
       <section className="bg-[#4b2719] px-6 py-20 text-center text-[#fffaf2]">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#f0a16f]">
           Piyush&apos;s Bakery
@@ -20,7 +37,6 @@ export default function RefundPolicyPage() {
 
       <section className="mx-auto max-w-5xl px-5 py-12 md:px-8">
         <div className="space-y-6">
-
           <PolicyCard title="1. Our Policy">
             <p>
               Piyush&apos;s Bakery prepares many products fresh and may prepare
@@ -119,17 +135,17 @@ export default function RefundPolicyPage() {
           </PolicyCard>
 
           <PolicyCard title="9. How to Request Cancellation or Refund">
-            <p>
-              Contact us with:
-            </p>
+            <p>Contact us with:</p>
 
-            <ul>
+            <ul className="list-disc space-y-1 pl-6">
               <li>Order ID</li>
               <li>Customer name</li>
               <li>Phone number</li>
               <li>Reason for the request</li>
               <li>Relevant payment details, where necessary</li>
-              <li>Photographs, where the request concerns product damage</li>
+              <li>
+                Photographs, where the request concerns product damage
+              </li>
             </ul>
 
             <div className="mt-5 rounded-2xl bg-[#f2e1cb] p-5">
@@ -146,7 +162,6 @@ export default function RefundPolicyPage() {
               requirements change.
             </p>
           </PolicyCard>
-
         </div>
       </section>
     </main>
@@ -158,7 +173,7 @@ function PolicyCard({
   children,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <article className="rounded-3xl border border-[#4b2719]/10 bg-white p-6 shadow-[0_8px_30px_rgba(75,39,25,.05)] md:p-8">
@@ -169,17 +184,6 @@ function PolicyCard({
       <div className="mt-5 space-y-4 text-[15px] leading-7 text-[#76584a]">
         {children}
       </div>
-
-      <style jsx>{`
-        ul {
-          list-style: disc;
-          padding-left: 1.4rem;
-        }
-
-        li {
-          margin-top: 0.35rem;
-        }
-      `}</style>
     </article>
   );
 }

@@ -1,9 +1,26 @@
-"use client";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description:
+    "Read the terms and conditions for using the Piyush's Bakery website, placing orders, payments, delivery, cancellations, refunds and custom bakery orders.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: "Terms & Conditions | Piyush's Bakery",
+    description:
+      "Terms and conditions for Piyush's Bakery website use, orders, payments, delivery and bakery services.",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Piyush's Bakery",
+  },
+};
 
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-[#fffaf2] text-[#4b2719]">
-
       <section className="bg-[#4b2719] px-6 py-20 text-center text-[#fffaf2]">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#f0a16f]">
           Piyush&apos;s Bakery
@@ -20,7 +37,6 @@ export default function TermsPage() {
 
       <section className="mx-auto max-w-5xl px-5 py-12 md:px-8">
         <div className="space-y-6">
-
           <PolicyCard title="1. About These Terms">
             <p>
               These Terms &amp; Conditions govern your use of the Piyush&apos;s
@@ -62,7 +78,7 @@ export default function TermsPage() {
           <PolicyCard title="4. Placing an Order">
             <p>When placing an order, you are responsible for providing:</p>
 
-            <ul>
+            <ul className="list-disc space-y-1 pl-6">
               <li>Correct name</li>
               <li>Valid phone number</li>
               <li>Valid email address where requested</li>
@@ -139,7 +155,7 @@ export default function TermsPage() {
           <PolicyCard title="9. Website Use">
             <p>You agree not to:</p>
 
-            <ul>
+            <ul className="list-disc space-y-1 pl-6">
               <li>Use the website for unlawful purposes</li>
               <li>Attempt to interfere with website security</li>
               <li>Submit false or misleading information</li>
@@ -197,7 +213,6 @@ export default function TermsPage() {
               <p>Phone: +91 87673 42441</p>
             </div>
           </PolicyCard>
-
         </div>
       </section>
     </main>
@@ -209,7 +224,7 @@ function PolicyCard({
   children,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <article className="rounded-3xl border border-[#4b2719]/10 bg-white p-6 shadow-[0_8px_30px_rgba(75,39,25,.05)] md:p-8">
@@ -220,17 +235,6 @@ function PolicyCard({
       <div className="mt-5 space-y-4 text-[15px] leading-7 text-[#76584a]">
         {children}
       </div>
-
-      <style jsx>{`
-        ul {
-          list-style: disc;
-          padding-left: 1.4rem;
-        }
-
-        li {
-          margin-top: 0.35rem;
-        }
-      `}</style>
     </article>
   );
 }
