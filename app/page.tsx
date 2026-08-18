@@ -5,6 +5,7 @@ import CartButton from "./components/CartButton";
 import Reviews from "./components/Reviews";
 import AIFoodAssistant from "./components/AIFoodAssistant";
 import MSG91OTP from "./components/MSG91OTP";
+import CookieConsent from "./components/CookieConsent";
 
 const bakeryWhatsAppNumber = "918767342441";
 
@@ -865,6 +866,7 @@ export default async function Home() {
       <section className="mx-auto w-full max-w-7xl px-5 pb-16 lg:px-8">
         <MSG91OTP />
       </section>
+      <CookieConsent />
 
       <AIFoodAssistant />
 

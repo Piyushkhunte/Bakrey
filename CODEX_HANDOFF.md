@@ -119,3 +119,49 @@ Never expose `SUPABASE_SERVICE_ROLE_KEY` to browser code.
 5. Remove only the generated `.next` folder, run `npm.cmd run build` again, and if the `readlink` error persists, build from a non-OneDrive location or CI environment.
 6. Add browser checks for responsive navigation, anchor links, contact/order links, and newsletter signup behavior.
 7. Add ESLint and automated tests, then deploy to a Next.js-compatible host such as Vercel with Supabase environment variables configured.
+
+
+## Manual Development Updates — August 2026
+
+### Admin Dashboard
+- Added `/admin` dashboard structure.
+- Added management sections for orders, products, categories and reviews.
+- Existing Supabase/Sanity systems are being reused.
+- Admin authentication/authorization: TODO
+- Admin statistics connected to live database: TODO
+- Admin order management: TODO
+- Admin product CRUD: TODO
+- Admin review moderation: TODO
+
+### Cookie Consent
+- Added CookieConsent component.
+- Added persistent consent using localStorage.
+- Added Accept and Reject non-essential options.
+- Cart and existing website functionality must remain unaffected.
+
+### Bakery Team Section
+- Replaced/expanded the empty "Talk to our cake team" section.
+- Changed wording to "Talk to our bakery team" because the website sells cakes, pastries, food, snacks and savouries.
+- Added bakery support description.
+- Added WhatsApp CTA.
+- Added phone-call CTA.
+
+### Existing Working Features
+- Cart working.
+- Checkout working.
+- Razorpay test payment working.
+- `/api/orders` working.
+- `/api/payment/create-order` working.
+- `/api/payment/verify` working.
+- Reviews API working.
+- Privacy Policy working.
+- Terms & Conditions working.
+- Refund Policy working.
+- Delivery Policy working.
+
+### Known Issues / TODO
+- MSG91 OTP authentication currently returns 401 AuthenticationFailure.
+- Gemini AI food assistant currently returns HTTP 503.
+- Admin authentication still needs to be implemented.
+- Admin live statistics still need database integration.
+- Custom transactional payment SMS still requires proper MSG91 SMS/Flow configuration.
