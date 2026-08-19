@@ -2,14 +2,18 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Refund & Cancellation Policy",
+  title: "Refund & Cancellation Policy | Piyush's Bakery Pune",
   description:
-    "Read Piyush's Bakery refund and cancellation policy covering order cancellations, fresh and customised products, damaged orders, failed payments and refunds.",
+    "Read Piyush's Bakery refund and cancellation policy covering order cancellations, fresh and customised products, damaged orders, failed payments and refunds in Pune.",
   alternates: {
     canonical: "/refund-policy",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "Refund & Cancellation Policy | Piyush's Bakery",
+    title: "Refund & Cancellation Policy | Piyush's Bakery Pune",
     description:
       "Learn about cancellations, refunds, damaged orders and payment issues at Piyush's Bakery.",
     type: "website",

@@ -70,7 +70,12 @@ export default function AdminPage() {
                 href={card.href}
                 className="rounded-3xl border border-[#4b2719]/10 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="text-3xl">{card.icon}</div>
+                <div
+                  className="text-3xl"
+                  aria-hidden="true"
+                >
+                  {card.icon}
+                </div>
 
                 <h3 className="mt-4 font-display text-xl font-bold">
                   {card.title}
@@ -101,7 +106,9 @@ function StatCard({
 }) {
   return (
     <div className="rounded-3xl bg-white p-6 shadow-sm">
-      <p className="text-sm text-[#76584a]">{title}</p>
+      <p className="text-sm text-[#76584a]">
+        {title}
+      </p>
 
       <p className="mt-2 font-display text-3xl font-bold">
         {value}

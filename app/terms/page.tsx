@@ -2,14 +2,18 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
+  title: "Terms & Conditions | Piyush's Bakery Pune",
   description:
-    "Read the terms and conditions for using the Piyush's Bakery website, placing orders, payments, delivery, cancellations, refunds and custom bakery orders.",
+    "Read the terms and conditions for using the Piyush's Bakery website, placing orders, payments, delivery, cancellations, refunds and custom bakery orders in Pune.",
   alternates: {
     canonical: "/terms",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "Terms & Conditions | Piyush's Bakery",
+    title: "Terms & Conditions | Piyush's Bakery Pune",
     description:
       "Terms and conditions for Piyush's Bakery website use, orders, payments, delivery and bakery services.",
     type: "website",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { client } from "../sanity/lib/client";
 import ProductMenu from "./components/productMenu";
 import WelcomeToast from "./components/WelcomeToast";
@@ -10,11 +11,38 @@ import CookieConsent from "./components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
+
   description:
     "Piyush's Bakery near Bharati Vidyapeeth, Pune offers freshly baked cakes, pastries, breads, snacks, savouries, desserts and more with delivery and pickup.",
+
+  keywords: [
+    "Piyush's Bakery",
+    "bakery in Pune",
+    "bakery near Bharati Vidyapeeth",
+    "cakes in Pune",
+    "pastries in Pune",
+    "fresh bakery Pune",
+    "bakery food Pune",
+    "snacks Pune",
+    "desserts Pune",
+  ],
+
   alternates: {
     canonical: "/",
   },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
   openGraph: {
     title: "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
     description:
@@ -128,11 +156,11 @@ export default async function Home() {
             className="flex items-center gap-3"
             aria-label="Piyush's Bakery home"
           >
-            <img
+            <Image
               src="/images/logo.webp"
               alt="Piyush's Bakery logo"
-              width="54"
-              height="54"
+              width={54}
+              height={54}
               className="size-12 rounded-full object-cover"
             />
 
@@ -173,7 +201,9 @@ export default async function Home() {
 
           <div className="hidden items-center gap-3 sm:flex">
             <p className="hidden text-right text-[11px] font-bold leading-4 text-[#76584a] xl:block">
-              Open daily<br />8:00 AM – 12:00 AM
+              Open daily
+              <br />
+              8:00 AM – 10:00 PM
             </p>
 
             <CartButton />
@@ -242,7 +272,7 @@ export default async function Home() {
                 <div className="my-2 border-t border-[#4b2719]/10" />
 
                 <p className="px-3 py-2 text-xs font-bold text-[#76584a]">
-                  Open daily: 8:00 AM – 12:00 AM
+                  Open daily: 8:00 AM – 10:00 PM
                 </p>
 
                 <a
@@ -344,13 +374,12 @@ export default async function Home() {
             <div className="absolute -inset-4 rounded-[3rem] bg-[#d98257]/20 blur-2xl" />
 
             <div className="relative aspect-[1.13] overflow-hidden rounded-[2rem] shadow-2xl shadow-[#7e432b]/20 sm:rounded-[3rem]">
-              <img
+              <Image
                 src="/images/hero-bakery.webp"
-                alt="A beautiful assortment of freshly baked treats"
-                width="1440"
-                height="960"
-                fetchPriority="high"
-                decoding="async"
+                alt="Freshly baked cakes, pastries and bakery treats at Piyush's Bakery in Pune"
+                width={1440}
+                height={960}
+                priority
                 className="absolute inset-0 size-full object-cover"
               />
             </div>
@@ -485,7 +514,7 @@ export default async function Home() {
                     `Hello Piyush's Bakery! I'd like to know the availability and price for ${item.toLowerCase()}.`,
                   )}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   aria-label={`Ask about ${item} on WhatsApp`}
                   className="flex w-full items-center justify-between border-b border-[#6e4532]/10 py-3 text-left text-sm font-semibold last:border-0 hover:text-[#c65334]"
                 >
@@ -537,13 +566,11 @@ export default async function Home() {
       >
         <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
           <div className="relative min-h-[390px]">
-            <img
+            <Image
               src="/images/product-3.webp"
-              alt="Fresh loaves of bread from the bakery"
-              width="900"
-              height="1200"
-              loading="lazy"
-              decoding="async"
+              alt="Fresh loaves of bread from Piyush's Bakery"
+              width={900}
+              height={1200}
               className="absolute inset-0 size-full object-cover"
             />
           </div>
@@ -732,13 +759,11 @@ export default async function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 text-sm text-[#775a4b] sm:grid-cols-2 lg:grid-cols-4">
           {/* FOOTER BRAND */}
           <div>
-            <img
+            <Image
               src="/images/logo.webp"
-              alt="Piyush's Bakery"
-              width="100"
-              height="100"
-              loading="lazy"
-              decoding="async"
+              alt="Piyush's Bakery logo"
+              width={100}
+              height={100}
               className="size-16 rounded-full object-cover"
             />
 
@@ -794,46 +819,6 @@ export default async function Home() {
               <a href="https://wa.me/918767342441">
                 WhatsApp us
               </a>
-
-              <div className="flex items-center gap-2 pt-2">
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Visit us on Instagram"
-                  className="grid size-9 place-items-center rounded-full border border-[#4b2719]/15 text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
-                >
-                  <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="5" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-                  </svg>
-                </a>
-
-                <a
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Visit us on Facebook"
-                  className="grid size-9 place-items-center rounded-full border border-[#4b2719]/15 text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
-                >
-                  <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden="true">
-                    <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.2v2H8v3h2.4v8h3.1Z" />
-                  </svg>
-                </a>
-
-                <a
-                  href="https://x.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Visit us on X"
-                  className="grid size-9 place-items-center rounded-full border border-[#4b2719]/15 text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
-                >
-                  <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden="true">
-                    <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 15.6 6.4 22H3.2l7.3-8.4L2.8 2h6.4L13.6 8l5.3-6ZM17.8 19.8h1.7L8.3 4.1H6.5l11.3 15.7Z" />
-                  </svg>
-                </a>
-              </div>
 
               <a href="#visit">
                 Delivery & pickup
@@ -925,6 +910,7 @@ export default async function Home() {
       <section className="mx-auto w-full max-w-7xl px-5 pb-16 lg:px-8">
         <MSG91OTP />
       </section>
+
       <CookieConsent />
 
       <AIFoodAssistant />

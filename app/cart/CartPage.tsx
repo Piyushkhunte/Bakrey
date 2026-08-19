@@ -3,11 +3,15 @@
 import Link from "next/link";
 import { urlFor } from "../../sanity/lib/image";
 import { useCart } from "../context/cartContext";
-;
 
 export default function CartPage() {
-  const { items, subtotal, removeFromCart, updateQuantity, clearCart } =
-    useCart();
+  const {
+    items,
+    subtotal,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+  } = useCart();
 
   const deliveryFee = subtotal > 0 && subtotal < 200 ? 40 : 0;
   const total = subtotal + deliveryFee;
@@ -92,13 +96,13 @@ export default function CartPage() {
                         .fit("crop")
                         .url()}
                       alt={item.name}
-                      width="256"
-                      height="256"
+                      width={256}
+                      height={256}
                       className="absolute inset-0 z-10 size-full object-cover"
                     />
                   )}
 
-                  🥐
+                  <span aria-hidden="true">🥐</span>
                 </div>
 
                 <div className="min-w-0 flex-1">
@@ -126,6 +130,7 @@ export default function CartPage() {
                     <div className="flex items-center overflow-hidden rounded-full border border-[#4b2719]/15">
                       <button
                         type="button"
+                        aria-label={`Decrease quantity of ${item.name}`}
                         onClick={() =>
                           updateQuantity(
                             item._id,
@@ -137,12 +142,16 @@ export default function CartPage() {
                         −
                       </button>
 
-                      <span className="grid min-w-10 place-items-center text-sm font-bold">
+                      <span
+                        aria-label={`Quantity: ${item.quantity}`}
+                        className="grid min-w-10 place-items-center text-sm font-bold"
+                      >
                         {item.quantity}
                       </span>
 
                       <button
                         type="button"
+                        aria-label={`Increase quantity of ${item.name}`}
                         onClick={() =>
                           updateQuantity(
                             item._id,

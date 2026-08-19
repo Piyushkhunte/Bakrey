@@ -3,14 +3,15 @@ import "./globals.css";
 import { CartProvider } from "./context/cartContext";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bakrey.vercel.app"),
+
   title: {
-    default:
-      "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
+    default: "Piyush's Bakery | Fresh Cakes, Pastries & Bakes in Pune",
     template: "%s | Piyush's Bakery",
   },
 
   description:
-    "Piyush's Bakery near Bharati Vidyapeeth, Pune offers freshly baked cakes, pastries, breads, snacks, savouries, desserts and more with delivery and pickup.",
+    "Order fresh cakes, pastries, breads, snacks, savouries and desserts from Piyush's Bakery near Bharati Vidyapeeth, Pune. Choose delivery or pickup.",
 
   keywords: [
     "Piyush's Bakery",
@@ -41,12 +42,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title:
-      "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
-
+    title: "Piyush's Bakery | Fresh Cakes, Pastries & Bakes in Pune",
     description:
-      "Fresh cakes, pastries, breads, snacks, savouries and desserts near Bharati Vidyapeeth, Pune.",
-
+      "Order fresh cakes, pastries, breads, snacks, savouries and desserts from Piyush's Bakery near Bharati Vidyapeeth, Pune.",
     type: "website",
     locale: "en_IN",
     siteName: "Piyush's Bakery",
@@ -54,10 +52,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title:
-      "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
+    title: "Piyush's Bakery | Fresh Cakes, Pastries & Bakes in Pune",
     description:
-      "Fresh cakes, pastries, breads, snacks, savouries and desserts near Bharati Vidyapeeth, Pune.",
+      "Order fresh cakes, pastries, breads, snacks, savouries and desserts from Piyush's Bakery near Bharati Vidyapeeth, Pune.",
   },
 };
 

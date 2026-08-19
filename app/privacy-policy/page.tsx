@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | Piyush's Bakery Pune",
   description:
     "Read Piyush's Bakery privacy policy covering customer information, orders, payments, cookies, data security, retention and third-party services.",
   alternates: {
     canonical: "/privacy-policy",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "Privacy Policy | Piyush's Bakery",
+    title: "Privacy Policy | Piyush's Bakery Pune",
     description:
       "Learn how Piyush's Bakery collects, uses and protects customer information.",
     type: "website",
@@ -24,12 +28,12 @@ export default function PrivacyPolicyPage() {
       {/* HEADER */}
       <header className="bg-[#4b2719] px-5 py-14 text-white sm:px-8 sm:py-20">
         <div className="mx-auto max-w-5xl">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
           >
             ← Back to Home
-          </a>
+          </Link>
 
           <div className="mt-10 max-w-3xl">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#f5ba77]">
@@ -94,22 +98,34 @@ export default function PrivacyPolicyPage() {
 
                 <ul className="mt-4 space-y-3 text-[15px] leading-7 text-[#76584a]">
                   <li className="flex gap-3">
-                    <span className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]" />
+                    <span
+                      className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]"
+                      aria-hidden="true"
+                    />
                     <span>Your name.</span>
                   </li>
 
                   <li className="flex gap-3">
-                    <span className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]" />
+                    <span
+                      className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]"
+                      aria-hidden="true"
+                    />
                     <span>Your phone number and email address.</span>
                   </li>
 
                   <li className="flex gap-3">
-                    <span className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]" />
+                    <span
+                      className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]"
+                      aria-hidden="true"
+                    />
                     <span>Delivery or pickup information.</span>
                   </li>
 
                   <li className="flex gap-3">
-                    <span className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]" />
+                    <span
+                      className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]"
+                      aria-hidden="true"
+                    />
                     <span>
                       Order details, products purchased, quantities and
                       amounts.
@@ -117,19 +133,28 @@ export default function PrivacyPolicyPage() {
                   </li>
 
                   <li className="flex gap-3">
-                    <span className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]" />
+                    <span
+                      className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]"
+                      aria-hidden="true"
+                    />
                     <span>Payment and transaction references.</span>
                   </li>
 
                   <li className="flex gap-3">
-                    <span className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]" />
+                    <span
+                      className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]"
+                      aria-hidden="true"
+                    />
                     <span>
                       Messages or information you send when contacting us.
                     </span>
                   </li>
 
                   <li className="flex gap-3">
-                    <span className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]" />
+                    <span
+                      className="mt-2 size-2 shrink-0 rounded-full bg-[#d86436]"
+                      aria-hidden="true"
+                    />
                     <span>
                       Basic technical information required to operate and
                       secure the website.
@@ -361,35 +386,35 @@ export default function PrivacyPolicyPage() {
               </p>
 
               <div className="mt-4 space-y-3 text-sm font-semibold">
-                <a
+                <Link
                   href="/privacy-policy"
                   className="block text-[#4b2719] hover:text-[#d86436]"
                 >
                   Privacy Policy
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/terms"
                   className="block text-[#4b2719] hover:text-[#d86436]"
                 >
                   Terms &amp; Conditions
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/refund-policy"
                   className="block text-[#4b2719] hover:text-[#d86436]"
                 >
                   Refund &amp; Cancellation
-                </a>
+                </Link>
               </div>
             </div>
 
-            <a
+            <Link
               href="/"
               className="block rounded-full border border-[#4b2719]/15 bg-white px-5 py-3 text-center text-sm font-bold text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
             >
               ← Return to Piyush&apos;s Bakery
-            </a>
+            </Link>
           </aside>
         </div>
       </article>
@@ -397,16 +422,14 @@ export default function PrivacyPolicyPage() {
       {/* FOOTER */}
       <footer className="border-t border-[#4b2719]/10 bg-[#fff7ed] px-5 py-8 sm:px-8">
         <div className="mx-auto flex max-w-5xl flex-col gap-4 text-center text-sm text-[#76584a] sm:flex-row sm:items-center sm:justify-between sm:text-left">
-          <p>
-            © 2026 Piyush&apos;s Bakery. All rights reserved.
-          </p>
+          <p>© 2026 Piyush&apos;s Bakery. All rights reserved.</p>
 
-          <a
+          <Link
             href="/"
             className="font-bold text-[#4b2719] transition hover:text-[#d86436]"
           >
             Back to Home →
-          </a>
+          </Link>
         </div>
       </footer>
     </main>

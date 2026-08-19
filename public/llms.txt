@@ -12,14 +12,17 @@ The bakery offers cakes, pastries, breads, cookies, and other freshly baked prod
 
 ## Important Pages
 
-- Home: https://www.yourbakerydomain.com/
-- Products: https://www.yourbakerydomain.com/products
-- About: https://www.yourbakerydomain.com/about
-- Contact: https://www.yourbakerydomain.com/contact
+- Home: https://bakrey.vercel.app/
+- Order online: https://bakrey.vercel.app/order
+- Pre-order: https://bakrey.vercel.app/pre-order
+- Delivery policy: https://bakrey.vercel.app/delivery-policy
+- Privacy policy: https://bakrey.vercel.app/privacy-policy
+- Terms and conditions: https://bakrey.vercel.app/terms
+- Refund and cancellation policy: https://bakrey.vercel.app/refund-policy
 
 ## Contact
 
-For current product availability, prices, custom orders, and other inquiries, use the contact page on the website.
+For current product availability, prices, custom orders, and other inquiries, use the contact details on the website or the pre-order page.
 
 ## Content Policy
 

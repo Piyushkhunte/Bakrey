@@ -2,14 +2,18 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Delivery Policy",
+  title: "Delivery Policy | Piyush's Bakery Pune",
   description:
-    "Read Piyush's Bakery delivery policy, including delivery areas, charges, addresses, receiving orders, fresh product handling and pickup information.",
+    "Learn about Piyush's Bakery delivery areas, charges, addresses, receiving orders, fresh product handling and pickup in Pune.",
   alternates: {
     canonical: "/delivery-policy",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "Delivery Policy | Piyush's Bakery",
+    title: "Delivery Policy | Piyush's Bakery Pune",
     description:
       "Learn about delivery areas, charges, order delivery and pickup at Piyush's Bakery in Pune.",
     type: "website",

@@ -2,14 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Pre-Order",
+  title: "Pre-Order Cakes & Bakery Items in Pune",
   description:
-    "Pre-order cakes, pastries, snacks and other bakery favourites from Piyush's Bakery in Pune for birthdays, celebrations, parties and special occasions.",
+    "Pre-order cakes, pastries, snacks and bakery favourites from Piyush's Bakery in Pune for birthdays, parties and special occasions.",
   alternates: {
     canonical: "/pre-order",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "Pre-Order | Piyush's Bakery",
+    title: "Pre-Order Cakes & Bakery Items in Pune | Piyush's Bakery",
     description:
       "Plan ahead and pre-order fresh cakes, pastries and bakery favourites from Piyush's Bakery in Pune.",
     type: "website",
@@ -56,10 +60,12 @@ export default function PreOrderPage() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           <article className="rounded-[2rem] bg-[#f2e1cb] p-7">
-            <div className="text-3xl">🎂</div>
+            <div className="text-3xl" aria-hidden="true">
+              🎂
+            </div>
 
             <h2 className="mt-5 font-display text-2xl text-[#4b2719]">
-              Cakes & celebrations
+              Cakes &amp; celebrations
             </h2>
 
             <p className="mt-3 text-sm leading-6 text-[#76584a]">
@@ -69,10 +75,12 @@ export default function PreOrderPage() {
           </article>
 
           <article className="rounded-[2rem] bg-white p-7 shadow-[0_8px_30px_rgba(75,39,25,.06)]">
-            <div className="text-3xl">🥐</div>
+            <div className="text-3xl" aria-hidden="true">
+              🥐
+            </div>
 
             <h2 className="mt-5 font-display text-2xl text-[#4b2719]">
-              Party & bulk orders
+              Party &amp; bulk orders
             </h2>
 
             <p className="mt-3 text-sm leading-6 text-[#76584a]">
@@ -82,7 +90,9 @@ export default function PreOrderPage() {
           </article>
 
           <article className="rounded-[2rem] bg-white p-7 shadow-[0_8px_30px_rgba(75,39,25,.06)]">
-            <div className="text-3xl">📅</div>
+            <div className="text-3xl" aria-hidden="true">
+              📅
+            </div>
 
             <h2 className="mt-5 font-display text-2xl text-[#4b2719]">
               Plan ahead
@@ -115,6 +125,7 @@ export default function PreOrderPage() {
               href="https://wa.me/918767342441?text=Hello%20Piyush's%20Bakery!%20I'd%20like%20to%20discuss%20a%20pre-order."
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Talk to Piyush's Bakery on WhatsApp"
               className="rounded-full bg-[#d86436] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#c65334]"
             >
               Talk on WhatsApp →
@@ -122,6 +133,7 @@ export default function PreOrderPage() {
 
             <a
               href="mailto:hello@piyushsbakery.in?subject=Bakery%20Pre-Order%20Enquiry"
+              aria-label="Email Piyush's Bakery about a pre-order"
               className="rounded-full border border-white/20 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
             >
               Email our team

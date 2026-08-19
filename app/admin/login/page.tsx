@@ -24,7 +24,7 @@ export default function AdminLoginPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
+          email: email.trim(),
           password,
         }),
       });
@@ -50,13 +50,15 @@ export default function AdminLoginPage() {
     <main className="flex min-h-screen items-center justify-center bg-[#fffaf2] px-5">
       <div className="w-full max-w-md">
         <div className="rounded-[2rem] border border-[#4b2719]/10 bg-white p-8 shadow-[0_20px_60px_rgba(75,39,25,.10)] md:p-10">
-
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#c65334]">
               Piyush&apos;s Bakery
             </p>
 
-            <div className="mx-auto mt-6 grid size-16 place-items-center rounded-full bg-[#f2e1cb] text-3xl">
+            <div
+              className="mx-auto mt-6 grid size-16 place-items-center rounded-full bg-[#f2e1cb] text-3xl"
+              aria-hidden="true"
+            >
               🔐
             </div>
 
@@ -69,10 +71,7 @@ export default function AdminLoginPage() {
             </p>
           </div>
 
-          <form
-            onSubmit={handleLogin}
-            className="mt-8 space-y-5"
-          >
+          <form onSubmit={handleLogin} className="mt-8 space-y-5">
             <div>
               <label
                 htmlFor="email"

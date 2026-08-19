@@ -2,73 +2,53 @@ import { NextResponse } from "next/server";
 import Razorpay from "razorpay";
 import { createClient } from "@supabase/supabase-js";
 
+type CreatePaymentOrderRequest = {
+  orderId?: string;
+};
+
+function getRequiredEnv(name: string) {
+  const value = process.env[name];
+
+  if (!value) {
+    throw new Error(`${name} is not configured.`);
+  }
+
+  return value;
+}
+
 export async function POST(request: Request) {
   try {
-    // Check environment variables first
-    if (!process.env.RAZORPAY_KEY_ID) {
-      console.error("❌ RAZORPAY_KEY_ID is missing");
-      return NextResponse.json(
-        { error: "RAZORPAY_KEY_ID is missing from .env.local" },
-        { status: 500 }
-      );
-    }
+    // --------------------------------
+    // Environment variables
+    // --------------------------------
 
-    if (!process.env.RAZORPAY_KEY_SECRET) {
-      console.error("❌ RAZORPAY_KEY_SECRET is missing");
-      return NextResponse.json(
-        {
-          error:
-            "RAZORPAY_KEY_SECRET is missing from .env.local",
-        },
-        { status: 500 }
-      );
-    }
-
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      console.error(
-        "❌ NEXT_PUBLIC_SUPABASE_URL is missing"
-      );
-      return NextResponse.json(
-        {
-          error:
-            "NEXT_PUBLIC_SUPABASE_URL is missing from .env.local",
-        },
-        { status: 500 }
-      );
-    }
-
-    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
-      console.error(
-        "❌ SUPABASE_SERVICE_ROLE_KEY is missing"
-      );
-      return NextResponse.json(
-        {
-          error:
-            "SUPABASE_SERVICE_ROLE_KEY is missing from .env.local",
-        },
-        { status: 500 }
-      );
-    }
-
-    // Never print the actual secret.
-    console.log(
-      "Razorpay Key ID:",
-      process.env.RAZORPAY_KEY_ID
+    const razorpayKeyId = getRequiredEnv("RAZORPAY_KEY_ID");
+    const razorpayKeySecret = getRequiredEnv(
+      "RAZORPAY_KEY_SECRET"
+    );
+    const supabaseUrl = getRequiredEnv(
+      "NEXT_PUBLIC_SUPABASE_URL"
+    );
+    const supabaseServiceRoleKey = getRequiredEnv(
+      "SUPABASE_SERVICE_ROLE_KEY"
     );
 
-    console.log(
-      "Razorpay Secret loaded:",
-      Boolean(process.env.RAZORPAY_KEY_SECRET)
-    );
+    // --------------------------------
+    // Razorpay server client
+    // --------------------------------
 
     const razorpay = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET,
+      key_id: razorpayKeyId,
+      key_secret: razorpayKeySecret,
     });
 
+    // --------------------------------
+    // Supabase admin client
+    // --------------------------------
+
     const supabaseAdmin = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY,
+      supabaseUrl,
+      supabaseServiceRoleKey,
       {
         auth: {
           autoRefreshToken: false,
@@ -77,11 +57,17 @@ export async function POST(request: Request) {
       }
     );
 
-    const body = await request.json();
+    // --------------------------------
+    // Parse request
+    // --------------------------------
 
-    const { orderId } = body;
+    const body =
+      (await request.json()) as CreatePaymentOrderRequest;
 
-    console.log("Supabase Order ID:", orderId);
+    const orderId =
+      typeof body.orderId === "string"
+        ? body.orderId.trim()
+        : "";
 
     if (!orderId) {
       return NextResponse.json(
@@ -91,29 +77,34 @@ export async function POST(request: Request) {
     }
 
     // --------------------------------
-    // Get our order
+    // Get our Supabase order
     // --------------------------------
 
     const { data: order, error: orderError } =
       await supabaseAdmin
         .from("orders")
         .select(
-          "id, total_amount, payment_status, razorpay_order_id, customer_name, email, phone"
+          `
+            id,
+            total_amount,
+            payment_status,
+            razorpay_order_id,
+            customer_name,
+            email,
+            phone
+          `
         )
         .eq("id", orderId)
         .single();
 
     if (orderError) {
       console.error(
-        "❌ Supabase order lookup error:",
+        "Supabase order lookup failed:",
         orderError
       );
 
       return NextResponse.json(
-        {
-          error: "Supabase order lookup failed.",
-          details: orderError.message,
-        },
+        { error: "Unable to find the order." },
         { status: 500 }
       );
     }
@@ -125,11 +116,9 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log("Order found:", {
-      id: order.id,
-      total_amount: order.total_amount,
-      payment_status: order.payment_status,
-    });
+    // --------------------------------
+    // Prevent paying an already-paid order
+    // --------------------------------
 
     if (order.payment_status === "paid") {
       return NextResponse.json(
@@ -141,81 +130,74 @@ export async function POST(request: Request) {
     }
 
     // --------------------------------
-    // Reuse existing Razorpay order
+    // Validate order amount
     // --------------------------------
 
-    if (order.razorpay_order_id) {
-      console.log(
-        "Existing Razorpay order:",
-        order.razorpay_order_id
-      );
-
-      return NextResponse.json({
-        success: true,
-        razorpayOrderId:
-          order.razorpay_order_id,
-        amount: Math.round(
-          Number(order.total_amount) * 100
-        ),
-        currency: "INR",
-      });
-    }
-
-    // --------------------------------
-    // Calculate amount
-    // --------------------------------
-
-    const amountInPaise = Math.round(
-      Number(order.total_amount) * 100
-    );
-
-    console.log(
-      "Razorpay amount:",
-      amountInPaise
-    );
+    const totalAmount = Number(order.total_amount);
 
     if (
-      !Number.isInteger(amountInPaise) ||
+      !Number.isFinite(totalAmount) ||
+      totalAmount <= 0
+    ) {
+      console.error(
+        "Invalid order total:",
+        order.id,
+        order.total_amount
+      );
+
+      return NextResponse.json(
+        { error: "Invalid order amount." },
+        { status: 500 }
+      );
+    }
+
+    const amountInPaise = Math.round(totalAmount * 100);
+
+    if (
+      !Number.isSafeInteger(amountInPaise) ||
       amountInPaise < 100
     ) {
       return NextResponse.json(
         {
           error:
-            "Invalid Razorpay amount. Minimum amount is ₹1.",
-          amountInPaise,
+            "Invalid payment amount. The minimum payment is ₹1.",
         },
         { status: 400 }
       );
     }
 
     // --------------------------------
+    // Reuse existing Razorpay order
+    // --------------------------------
+
+    if (order.razorpay_order_id) {
+      return NextResponse.json({
+        success: true,
+        razorpayOrderId: order.razorpay_order_id,
+        amount: amountInPaise,
+        currency: "INR",
+        customer: {
+          name: order.customer_name,
+          email: order.email,
+          phone: order.phone,
+        },
+      });
+    }
+
+    // --------------------------------
     // Create Razorpay order
     // --------------------------------
 
-    const receipt = `bakery_${order.id.slice(
-      0,
-      8
-    )}`;
+    const receipt = `bakery_${order.id.slice(0, 8)}`;
 
-    console.log(
-      "Creating Razorpay order with receipt:",
-      receipt
-    );
-
-    const razorpayOrder =
-      await razorpay.orders.create({
-        amount: amountInPaise,
-        currency: "INR",
-        receipt,
-        notes: {
-          supabase_order_id: order.id,
-        },
-      });
-
-    console.log(
-      "✅ Razorpay order created:",
-      razorpayOrder.id
-    );
+    const razorpayOrder = await razorpay.orders.create({
+      amount: amountInPaise,
+      currency: "INR",
+      receipt,
+      notes: {
+        supabase_order_id: order.id,
+      },
+    });
 
     // --------------------------------
     // Save Razorpay order ID
@@ -225,22 +207,21 @@ export async function POST(request: Request) {
       await supabaseAdmin
         .from("orders")
         .update({
-          razorpay_order_id:
-            razorpayOrder.id,
+          razorpay_order_id: razorpayOrder.id,
         })
-        .eq("id", order.id);
+        .eq("id", order.id)
+        .is("razorpay_order_id", null);
 
     if (updateError) {
       console.error(
-        "❌ Failed to save Razorpay order ID:",
+        "Failed to save Razorpay order ID:",
         updateError
       );
 
       return NextResponse.json(
         {
           error:
-            "Razorpay order created but database update failed.",
-          details: updateError.message,
+            "Payment order was created, but it could not be linked to the bakery order.",
         },
         { status: 500 }
       );
@@ -257,33 +238,31 @@ export async function POST(request: Request) {
         phone: order.phone,
       },
     });
-  } catch (error: any) {
-    console.error(
-      "❌ RAZORPAY ERROR:",
-      error
-    );
+  } catch (error: unknown) {
+    console.error("Create Razorpay order error:", error);
 
-    console.error(
-      "❌ Razorpay error message:",
-      error?.message
-    );
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Unknown payment error.";
 
-    console.error(
-      "❌ Razorpay error description:",
-      error?.error?.description
-    );
-
-    console.error(
-      "❌ Razorpay error code:",
-      error?.error?.code
-    );
+    // Configuration errors are useful during development,
+    // but don't expose server internals to customers.
+    if (
+      message.includes("is not configured")
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            "Payment service is not configured correctly.",
+        },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       {
-        error:
-          error?.error?.description ||
-          error?.message ||
-          "Failed to create Razorpay order.",
+        error: "Failed to create payment order.",
       },
       { status: 500 }
     );

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { client as sanityClient } from "../../../sanity/lib/client";
-import { client } from "../../../sanity/lib/client";
 
 type CheckoutItem = {
   productId: string;
@@ -20,9 +19,25 @@ type CheckoutRequest = {
   items: CheckoutItem[];
 };
 
+type SanityProduct = {
+  _id: string;
+  name: string;
+  price: number;
+  isAvailable: boolean;
+};
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!supabaseUrl || !supabaseServiceRoleKey) {
+  throw new Error(
+    "Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY environment variable."
+  );
+}
+
 const supabaseAdmin = createSupabaseClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  supabaseUrl,
+  supabaseServiceRoleKey,
   {
     auth: {
       autoRefreshToken: false,
@@ -72,6 +87,13 @@ export async function POST(request: Request) {
       );
     }
 
+    if (items.length > 100) {
+      return NextResponse.json(
+        { error: "Too many different products in one order." },
+        { status: 400 }
+      );
+    }
+
     if (
       fulfillmentType === "delivery" &&
       !customer.address?.trim()
@@ -83,12 +105,14 @@ export async function POST(request: Request) {
     }
 
     // -----------------------------
-    // Validate quantities
+    // Validate quantities and IDs
     // -----------------------------
 
     for (const item of items) {
       if (
-        !item.productId ||
+        !item ||
+        typeof item.productId !== "string" ||
+        !item.productId.trim() ||
         !Number.isInteger(item.quantity) ||
         item.quantity <= 0 ||
         item.quantity > 50
@@ -100,13 +124,25 @@ export async function POST(request: Request) {
       }
     }
 
+    // Prevent the same product from being submitted twice.
+    const uniqueProductIds = new Set(
+      items.map((item) => item.productId.trim())
+    );
+
+    if (uniqueProductIds.size !== items.length) {
+      return NextResponse.json(
+        { error: "Duplicate products were found in your cart." },
+        { status: 400 }
+      );
+    }
+
+    const productIds = items.map((item) => item.productId.trim());
+
     // -----------------------------
     // Fetch real products from Sanity
     // -----------------------------
 
-    const productIds = items.map((item) => item.productId);
-
-    const products = await sanityClient.fetch(
+    const products = (await sanityClient.fetch(
       `*[
         _type == "product" &&
         _id in $productIds &&
@@ -123,7 +159,7 @@ export async function POST(request: Request) {
           revalidate: 0,
         },
       }
-    );
+    )) as SanityProduct[];
 
     if (!products || products.length !== productIds.length) {
       return NextResponse.json(
@@ -139,13 +175,19 @@ export async function POST(request: Request) {
     // Build verified order items
     // -----------------------------
 
-    const orderItems = [];
+    const orderItems: Array<{
+      product_id: string;
+      product_name: string;
+      unit_price: number;
+      quantity: number;
+      item_total: number;
+    }> = [];
 
     let subtotal = 0;
 
     for (const item of items) {
       const product = products.find(
-        (p: { _id: string }) => p._id === item.productId
+        (product) => product._id === item.productId
       );
 
       if (!product) {
@@ -158,6 +200,20 @@ export async function POST(request: Request) {
       }
 
       const unitPrice = Number(product.price);
+
+      if (!Number.isFinite(unitPrice) || unitPrice < 0) {
+        console.error(
+          "Invalid product price in Sanity:",
+          product._id,
+          product.price
+        );
+
+        return NextResponse.json(
+          { error: "One or more products have an invalid price." },
+          { status: 500 }
+        );
+      }
+
       const itemTotal = unitPrice * item.quantity;
 
       subtotal += itemTotal;
@@ -241,7 +297,7 @@ export async function POST(request: Request) {
         itemsError
       );
 
-      // Roll back the parent order if items fail.
+      // Roll back the parent order if item creation fails.
       await supabaseAdmin
         .from("orders")
         .delete()
@@ -268,7 +324,10 @@ export async function POST(request: Request) {
     console.error("Orders API error:", error);
 
     return NextResponse.json(
-      { error: "Something went wrong while creating the order." },
+      {
+        error:
+          "Something went wrong while creating the order.",
+      },
       { status: 500 }
     );
   }
