@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Piyush's Bakery Pune",
+  title: "Terms & Conditions",
   description:
     "Read the terms and conditions for using the Piyush's Bakery website, placing orders, payments, delivery, cancellations, refunds and custom bakery orders in Pune.",
   alternates: {
@@ -25,6 +26,24 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-[#fffaf2] text-[#4b2719]">
+      <header className="border-b border-[#4b2719]/10 bg-[#fffaf2]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8">
+          <Link
+            href="/"
+            className="font-display text-2xl font-bold text-[#4b2719]"
+          >
+            Piyush&apos;s Bakery
+          </Link>
+
+          <Link
+            href="/"
+            className="text-sm font-bold text-[#825b4a] hover:text-[#d86436]"
+          >
+            ← Back to home
+          </Link>
+        </div>
+      </header>
+
       <section className="bg-[#4b2719] px-6 py-20 text-center text-[#fffaf2]">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#f0a16f]">
           Piyush&apos;s Bakery
@@ -218,6 +237,25 @@ export default function TermsPage() {
             </div>
           </PolicyCard>
         </div>
+
+        <nav
+          aria-label="Related bakery information"
+          className="mt-8 flex flex-wrap gap-3"
+        >
+          <Link
+            href="/order"
+            className="rounded-full bg-[#4b2719] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#d86436]"
+          >
+            Order online
+          </Link>
+
+          <Link
+            href="/refund-policy"
+            className="rounded-full border border-[#4b2719]/15 bg-white px-5 py-3 text-sm font-bold text-[#4b2719] transition hover:border-[#d86436] hover:text-[#d86436]"
+          >
+            Refund &amp; cancellation policy
+          </Link>
+        </nav>
       </section>
     </main>
   );

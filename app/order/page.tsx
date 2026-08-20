@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Order Online",
+  title: "Order Bakery Favourites Online in Pune",
   description:
     "Order fresh cakes, pastries, snacks, savouries, breads and desserts from Piyush's Bakery in Pune. Add your favourites to the cart and checkout online.",
   alternates: {
@@ -44,7 +44,7 @@ export default function OrderPage() {
           <p className="eyebrow">Freshly baked for you</p>
 
           <h1 className="mt-3 font-display text-5xl leading-tight text-[#45271c] md:text-6xl">
-            Order your favourites.
+            Order fresh bakery favourites online.
           </h1>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#6d5145]">

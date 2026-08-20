@@ -1,0 +1,405 @@
+2026-08-20 10:05:45.284 INFO    piyush-project_b1d7 - strix.core.runner: Starting Strix scan piyush-project_b1d7 (image=ghcr.io/usestrix/strix-sandbox:1.3.0, max_turns=500, interactive=False, run_dir=C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7)
+2026-08-20 10:05:45.285 INFO    piyush-project_b1d7 - strix.core.runner: LLM model resolved: openai/nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:05:45.285 INFO    piyush-project_b1d7 - strix.core.runner: Bringing up sandbox session for scan piyush-project_b1d7
+2026-08-20 10:05:45.285 DEBUG   piyush-project_b1d7 - strix.runtime.backends: Selected sandbox backend: docker
+2026-08-20 10:05:45.286 INFO    piyush-project_b1d7 - strix.runtime.session_manager: Creating sandbox session for scan piyush-project_b1d7 (backend=docker, image=ghcr.io/usestrix/strix-sandbox:1.3.0)
+2026-08-20 10:05:45.491 DEBUG   piyush-project_b1d7 - strix.runtime.docker_client: Creating sandbox container: image=ghcr.io/usestrix/strix-sandbox:1.3.0 caps=['NET_ADMIN', 'NET_RAW'] exposed_ports=[48080]
+2026-08-20 10:05:45.643 INFO    piyush-project_b1d7 - strix.runtime.docker_client: Sandbox container created: id=32f5d7974b8a image=ghcr.io/usestrix/strix-sandbox:1.3.0
+2026-08-20 10:05:46.566 DEBUG   piyush-project_b1d7 - strix.runtime.session_manager: Caido host endpoint resolved: http://127.0.0.1:28977
+2026-08-20 10:05:46.566 INFO    piyush-project_b1d7 - strix.runtime.caido_bootstrap: Bootstrapping Caido client (host=http://127.0.0.1:28977, container=http://127.0.0.1:48080)
+2026-08-20 10:05:46.979 INFO    piyush-project_b1d7 - strix.runtime.caido_bootstrap: Caido project selected: 551031a9-a5f1-4d81-9d5f-8ca768b87d7b
+2026-08-20 10:05:46.979 INFO    piyush-project_b1d7 - strix.runtime.session_manager: Sandbox session for scan piyush-project_b1d7 ready and cached
+2026-08-20 10:05:46.979 INFO    piyush-project_b1d7 - strix.core.runner: Sandbox ready for scan piyush-project_b1d7
+2026-08-20 10:05:47.011 DEBUG   piyush-project_b1d7 - strix.skills: Loaded skill: scan_modes/deep -> deep
+2026-08-20 10:05:47.043 DEBUG   piyush-project_b1d7 - strix.skills: Loaded skill: tooling/agent_browser -> agent_browser
+2026-08-20 10:05:47.070 DEBUG   piyush-project_b1d7 - strix.skills: Loaded skill: tooling/python -> python
+2026-08-20 10:05:47.112 DEBUG   piyush-project_b1d7 - strix.skills: Loaded skill: coordination/root_agent -> root_agent
+2026-08-20 10:05:47.128 DEBUG   piyush-project_b1d7 - strix.skills: Loaded skill: coordination/source_aware_whitebox -> source_aware_whitebox
+2026-08-20 10:05:47.181 DEBUG   piyush-project_b1d7 - strix.skills: Loaded skill: custom/source_aware_sast -> source_aware_sast
+2026-08-20 10:05:47.182 DEBUG   piyush-project_b1d7 - strix.skills: load_skills: 6 skill(s) resolved
+2026-08-20 10:05:48.701 DEBUG   - - strix.telemetry.posthog: posthog event sent: skill_loaded
+2026-08-20 10:05:48.717 DEBUG   - - strix.telemetry.posthog: posthog event sent: skill_loaded
+2026-08-20 10:05:48.767 DEBUG   - - strix.telemetry.posthog: posthog event sent: skill_loaded
+2026-08-20 10:05:48.804 DEBUG   - - strix.telemetry.posthog: posthog event sent: skill_loaded
+2026-08-20 10:05:48.828 DEBUG   - - strix.telemetry.posthog: posthog event sent: skill_loaded
+2026-08-20 10:05:48.832 DEBUG   - - strix.telemetry.posthog: posthog event sent: skill_loaded
+2026-08-20 10:05:49.649 DEBUG   piyush-project_b1d7 - strix.agents.prompt: render_system_prompt: scan_mode=deep root=True whitebox=True skills=6 prompt_len=85570
+2026-08-20 10:05:49.650 INFO    piyush-project_b1d7 - strix.agents.factory: Built root agent 'Root Agent' (skills=0, tools=30, scan_mode=deep, whitebox=True)
+2026-08-20 10:05:49.650 INFO    piyush-project_b1d7 - strix.core.agents: agent.register 9b37f12e (Root Agent) parent=-
+2026-08-20 10:05:49.711 ERROR   piyush-project_b1d7 - strix.core.agents: coordinator snapshot to C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\.state\agents.json failed
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\pipx\pipx\venvs\strix-agent\Lib\site-packages\strix\core\agents.py", line 529, in _maybe_snapshot
+    tmp_path.replace(path)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py", line 780, in replace
+    os.replace(self, target)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\hp\\OneDrive\\Desktop\\piyush-project\\strix_runs\\piyush-project_b1d7\\.state\\.agents.json.r7nhglm3.tmp' -> 'C:\\Users\\hp\\OneDrive\\Desktop\\piyush-project\\strix_runs\\piyush-project_b1d7\\.state\\agents.json'
+2026-08-20 10:05:49.775 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating trace
+2026-08-20 10:05:49.777 DEBUG   piyush-project_b1d7 - openai.agents: Setting current trace: no-op
+2026-08-20 10:05:49.777 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:49.806 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:49.806 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 1, current_agent=Root Agent
+2026-08-20 10:05:49.807 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:49.827 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:05:49.828 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:49.830 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:05:50.595 DEBUG   - - strix.telemetry.scarf: scarf event sent: skill_loaded
+2026-08-20 10:05:50.613 DEBUG   - - strix.telemetry.scarf: scarf event sent: skill_loaded
+2026-08-20 10:05:50.637 DEBUG   - - strix.telemetry.scarf: scarf event sent: skill_loaded
+2026-08-20 10:05:50.672 DEBUG   - - strix.telemetry.scarf: scarf event sent: skill_loaded
+2026-08-20 10:05:50.682 DEBUG   - - strix.telemetry.scarf: scarf event sent: skill_loaded
+2026-08-20 10:05:50.704 DEBUG   - - strix.telemetry.scarf: scarf event sent: skill_loaded
+2026-08-20 10:05:53.585 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:05:53.589 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:05:53.591 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:05:53.592 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:05:53.592 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:05:53.593 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:53.671 DEBUG   piyush-project_b1d7 - openai.agents: Turn 1 complete, next_step type=NextStepRunAgain
+2026-08-20 10:05:53.693 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 2, current_agent=Root Agent
+2026-08-20 10:05:53.694 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:53.696 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:05:53.696 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:53.697 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:05:56.613 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:05:56.616 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:05:56.619 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:05:56.619 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:05:56.619 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:05:56.619 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:05:56.620 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:56.694 DEBUG   piyush-project_b1d7 - openai.agents: Turn 2 complete, next_step type=NextStepRunAgain
+2026-08-20 10:05:56.714 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 3, current_agent=Root Agent
+2026-08-20 10:05:56.714 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:56.717 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:05:56.717 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:56.720 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:05:58.393 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:05:58.397 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:05:58.399 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:05:58.399 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:05:58.400 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:05:58.400 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:05:58.400 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:58.472 DEBUG   piyush-project_b1d7 - openai.agents: Turn 3 complete, next_step type=NextStepRunAgain
+2026-08-20 10:05:58.490 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 4, current_agent=Root Agent
+2026-08-20 10:05:58.490 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:58.491 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:05:58.492 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:05:58.493 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:00.930 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:00.936 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:00.938 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:00.939 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:00.939 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:00.939 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:01.006 DEBUG   piyush-project_b1d7 - openai.agents: Turn 4 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:01.021 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 5, current_agent=Root Agent
+2026-08-20 10:06:01.022 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:01.023 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:01.023 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:01.024 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:02.421 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:02.425 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:02.427 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:02.428 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:02.428 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:02.429 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:06:02.429 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:02.497 DEBUG   piyush-project_b1d7 - openai.agents: Turn 5 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:02.518 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 6, current_agent=Root Agent
+2026-08-20 10:06:02.518 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:02.520 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:02.520 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:02.523 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:04.158 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:04.163 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:04.166 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:04.166 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:04.166 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:04.167 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:04.254 DEBUG   piyush-project_b1d7 - openai.agents: Turn 6 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:04.276 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 7, current_agent=Root Agent
+2026-08-20 10:06:04.277 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:04.279 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:04.279 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:04.280 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:05.908 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:05.912 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:05.915 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:05.917 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:05.917 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:05.919 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:06.002 DEBUG   piyush-project_b1d7 - openai.agents: Turn 7 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:06.024 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 8, current_agent=Root Agent
+2026-08-20 10:06:06.025 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:06.027 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:06.027 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:06.029 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:07.592 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:07.596 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:07.598 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:07.599 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:07.599 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:07.599 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:06:07.599 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:07.609 DEBUG   piyush-project_b1d7 - openai.agents: Turn 8 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:07.626 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 9, current_agent=Root Agent
+2026-08-20 10:06:07.626 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:07.628 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:07.628 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:07.629 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:10.246 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:10.249 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:10.252 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:10.253 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:10.253 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:10.254 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:06:10.255 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:10.325 DEBUG   piyush-project_b1d7 - openai.agents: Turn 9 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:10.346 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 10, current_agent=Root Agent
+2026-08-20 10:06:10.347 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:10.348 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:10.348 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:10.351 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:13.564 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:13.570 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:13.572 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:13.572 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:13.573 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:13.573 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:13.669 DEBUG   piyush-project_b1d7 - openai.agents: Turn 10 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:13.691 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 11, current_agent=Root Agent
+2026-08-20 10:06:13.691 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:13.693 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:13.693 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:13.694 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:15.379 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:15.387 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:15.390 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:15.391 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:15.392 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:15.392 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:06:15.393 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:15.477 DEBUG   piyush-project_b1d7 - openai.agents: Turn 11 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:15.500 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 12, current_agent=Root Agent
+2026-08-20 10:06:15.500 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:15.502 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:15.503 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:15.504 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:17.329 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:17.336 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:17.341 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:17.342 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:17.342 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:17.343 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:17.430 DEBUG   piyush-project_b1d7 - openai.agents: Turn 12 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:17.455 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 13, current_agent=Root Agent
+2026-08-20 10:06:17.456 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:17.458 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:17.458 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:17.460 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:19.360 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:19.370 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:19.374 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:19.375 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:19.375 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:19.377 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:19.453 DEBUG   piyush-project_b1d7 - openai.agents: Turn 13 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:19.475 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 14, current_agent=Root Agent
+2026-08-20 10:06:19.475 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:19.478 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:19.478 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:19.480 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:20.807 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:20.813 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:20.818 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:20.819 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:20.819 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:20.820 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:20.902 DEBUG   piyush-project_b1d7 - openai.agents: Turn 14 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:20.925 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 15, current_agent=Root Agent
+2026-08-20 10:06:20.925 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:20.927 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:20.928 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:20.930 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:46.802 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:46.805 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:46.808 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:46.808 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:46.808 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:46.809 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:46.977 DEBUG   piyush-project_b1d7 - openai.agents: Turn 15 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:46.995 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 16, current_agent=Root Agent
+2026-08-20 10:06:46.996 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:46.997 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:46.998 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:46.999 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:49.060 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:49.063 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:49.066 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:49.067 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:49.067 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:49.067 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:06:49.068 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:49.130 DEBUG   piyush-project_b1d7 - openai.agents: Turn 16 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:49.150 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 17, current_agent=Root Agent
+2026-08-20 10:06:49.150 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:49.152 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:49.152 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:49.154 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:50.637 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:50.639 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:50.641 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:50.642 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:50.642 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:50.642 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:50.843 DEBUG   piyush-project_b1d7 - openai.agents: Turn 17 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:50.858 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 18, current_agent=Root Agent
+2026-08-20 10:06:50.858 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:50.860 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:50.860 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:50.861 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:53.569 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:53.572 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:53.574 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:53.575 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:53.575 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:53.576 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:53.760 DEBUG   piyush-project_b1d7 - openai.agents: Turn 18 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:53.776 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 19, current_agent=Root Agent
+2026-08-20 10:06:53.776 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:53.777 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:53.777 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:53.779 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:55.920 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:55.923 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:55.925 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:55.926 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:55.927 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:55.927 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:56.127 DEBUG   piyush-project_b1d7 - openai.agents: Turn 19 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:56.145 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 20, current_agent=Root Agent
+2026-08-20 10:06:56.145 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:56.147 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:56.148 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:56.149 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:06:58.173 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:06:58.179 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:06:58.182 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:06:58.183 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:06:58.183 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:06:58.184 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:58.394 DEBUG   piyush-project_b1d7 - openai.agents: Turn 20 complete, next_step type=NextStepRunAgain
+2026-08-20 10:06:58.413 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 21, current_agent=Root Agent
+2026-08-20 10:06:58.413 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:58.415 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:06:58.416 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:06:58.417 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:07:07.287 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:07:07.292 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:07:07.295 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:07:07.297 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:07:07.298 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:07:07.299 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:07.463 DEBUG   piyush-project_b1d7 - openai.agents: Turn 21 complete, next_step type=NextStepRunAgain
+2026-08-20 10:07:07.486 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 22, current_agent=Root Agent
+2026-08-20 10:07:07.486 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:07.489 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:07:07.489 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:07.491 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:07:11.534 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:07:11.539 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:07:11.541 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:07:11.542 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:07:11.542 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:07:11.544 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:11.726 DEBUG   piyush-project_b1d7 - openai.agents: Turn 22 complete, next_step type=NextStepRunAgain
+2026-08-20 10:07:11.750 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 23, current_agent=Root Agent
+2026-08-20 10:07:11.750 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:11.752 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:07:11.753 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:11.754 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:07:35.354 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:07:35.364 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:07:35.368 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:07:35.369 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:07:35.369 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:07:35.372 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:35.543 DEBUG   piyush-project_b1d7 - openai.agents: Turn 23 complete, next_step type=NextStepRunAgain
+2026-08-20 10:07:35.558 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 24, current_agent=Root Agent
+2026-08-20 10:07:35.558 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:35.560 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:07:35.561 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:35.563 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:07:45.176 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:07:45.182 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:07:45.186 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:07:45.188 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:07:45.188 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:07:45.189 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:45.318 DEBUG   piyush-project_b1d7 - openai.agents: Turn 24 complete, next_step type=NextStepRunAgain
+2026-08-20 10:07:45.341 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 25, current_agent=Root Agent
+2026-08-20 10:07:45.341 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:45.344 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:07:45.344 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:45.347 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:07:49.060 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:07:49.066 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:07:49.069 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:07:49.070 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:07:49.070 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:07:49.070 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:07:49.072 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:49.218 DEBUG   piyush-project_b1d7 - openai.agents: Turn 25 complete, next_step type=NextStepRunAgain
+2026-08-20 10:07:49.239 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 26, current_agent=Root Agent
+2026-08-20 10:07:49.239 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:49.242 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:07:49.242 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:49.244 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:07:53.883 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:07:53.888 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:07:53.891 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:07:53.892 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:07:53.893 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:07:53.895 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:54.043 DEBUG   piyush-project_b1d7 - openai.agents: Turn 26 complete, next_step type=NextStepRunAgain
+2026-08-20 10:07:54.064 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 27, current_agent=Root Agent
+2026-08-20 10:07:54.064 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:54.066 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:07:54.066 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:54.068 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:07:58.077 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:07:58.083 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:07:58.086 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:07:58.088 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:07:58.088 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:07:58.089 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:58.250 DEBUG   piyush-project_b1d7 - openai.agents: Turn 27 complete, next_step type=NextStepRunAgain
+2026-08-20 10:07:58.270 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 28, current_agent=Root Agent
+2026-08-20 10:07:58.271 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:58.273 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:07:58.273 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:07:58.275 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:08:00.910 DEBUG   piyush-project_b1d7 - strix.report.usage: LiteLLM cost estimate unavailable for model nvidia/nvidia/nemotron-3-ultra-550b-a55b
+2026-08-20 10:08:00.913 INFO    piyush-project_b1d7 - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:08:00.915 INFO    piyush-project_b1d7 - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:08:00.915 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=reasoning class=ResponseReasoningItem
+2026-08-20 10:08:00.915 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=function_call class=ResponseFunctionToolCall
+2026-08-20 10:08:00.915 DEBUG   piyush-project_b1d7 - openai.agents: Processing output item type=message class=ResponseOutputMessage
+2026-08-20 10:08:00.916 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:08:01.081 DEBUG   piyush-project_b1d7 - openai.agents: Turn 28 complete, next_step type=NextStepRunAgain
+2026-08-20 10:08:01.100 DEBUG   piyush-project_b1d7 - openai.agents: Starting turn 29, current_agent=Root Agent
+2026-08-20 10:08:01.100 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:08:01.102 DEBUG   piyush-project_b1d7 - openai.agents: No conversation_id available for request
+2026-08-20 10:08:01.102 DEBUG   piyush-project_b1d7 - openai.agents: Tracing is disabled. Not creating span
+2026-08-20 10:08:01.103 DEBUG   piyush-project_b1d7 - openai.agents: Calling LLM
+2026-08-20 10:08:02.821 INFO    - - strix.report.sarif: Wrote SARIF 2.1.0 report: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7\findings.sarif (0 results)
+2026-08-20 10:08:02.822 INFO    - - strix.report.state: Essential scan data saved to: C:\Users\hp\OneDrive\Desktop\piyush-project\strix_runs\piyush-project_b1d7
+2026-08-20 10:08:02.823 DEBUG   piyush-project_b1d7 - openai.agents: Resetting current trace
+2026-08-20 10:08:02.823 INFO    piyush-project_b1d7 - strix.core.runner: Scan piyush-project_b1d7 interrupted by the user
+2026-08-20 10:08:02.823 INFO    piyush-project_b1d7 - strix.core.agents: agent.status 9b37f12e=running
+2026-08-20 10:08:02.827 INFO    piyush-project_b1d7 - strix.core.runner: Tearing down sandbox session for scan piyush-project_b1d7
+2026-08-20 10:08:03.161 INFO    piyush-project_b1d7 - strix.runtime.session_manager: Cleaned up sandbox session for scan piyush-project_b1d7
+2026-08-20 10:08:03.162 INFO    piyush-project_b1d7 - strix.core.runner: Strix scan piyush-project_b1d7 done

@@ -48,7 +48,7 @@ export default function PreOrderPage() {
           <p className="eyebrow">Plan something special</p>
 
           <h1 className="mt-3 font-display text-5xl leading-tight text-[#45271c] md:text-6xl">
-            Pre-order your favourites.
+            Pre-order cakes and bakery favourites.
           </h1>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#6d5145]">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "./context/cartContext";
 
@@ -12,18 +13,6 @@ export const metadata: Metadata = {
 
   description:
     "Order fresh cakes, pastries, breads, snacks, savouries and desserts from Piyush's Bakery near Bharati Vidyapeeth, Pune. Choose delivery or pickup.",
-
-  keywords: [
-    "Piyush's Bakery",
-    "bakery in Pune",
-    "bakery near Bharati Vidyapeeth",
-    "cakes in Pune",
-    "pastries in Pune",
-    "fresh bakery Pune",
-    "bakery food Pune",
-    "snacks Pune",
-    "desserts Pune",
-  ],
 
   alternates: {
     canonical: "/",
@@ -67,6 +56,22 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <body>
         <CartProvider>{children}</CartProvider>
+
+        {/* Google Analytics 4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-M2HJ4CWF0B"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-M2HJ4CWF0B');
+          `}
+        </Script>
       </body>
     </html>
   );

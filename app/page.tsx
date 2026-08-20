@@ -10,22 +10,12 @@ import MSG91OTP from "./components/MSG91OTP";
 import CookieConsent from "./components/CookieConsent";
 
 export const metadata: Metadata = {
-  title: "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
+  title: {
+    absolute: "Piyush's Bakery | Cakes, Pastries, Food & Snacks in Pune",
+  },
 
   description:
     "Piyush's Bakery near Bharati Vidyapeeth, Pune offers freshly baked cakes, pastries, breads, snacks, savouries, desserts and more with delivery and pickup.",
-
-  keywords: [
-    "Piyush's Bakery",
-    "bakery in Pune",
-    "bakery near Bharati Vidyapeeth",
-    "cakes in Pune",
-    "pastries in Pune",
-    "fresh bakery Pune",
-    "bakery food Pune",
-    "snacks Pune",
-    "desserts Pune",
-  ],
 
   alternates: {
     canonical: "/",
@@ -54,6 +44,32 @@ export const metadata: Metadata = {
 };
 
 const bakeryWhatsAppNumber = "918767342441";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Bakery",
+      "@id": "https://bakrey.vercel.app/#bakery",
+      name: "Piyush's Bakery",
+      url: "https://bakrey.vercel.app/",
+      telephone: "+918767342441",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Pune",
+        addressRegion: "Maharashtra",
+        addressCountry: "IN",
+      },
+      openingHours: "Mo-Su 08:00-22:00",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://bakrey.vercel.app/#website",
+      name: "Piyush's Bakery",
+      url: "https://bakrey.vercel.app/",
+    },
+  ],
+};
 
 const quickBakes = [
   "Tea cakes",
@@ -137,6 +153,10 @@ export default async function Home() {
 
   return (
     <main className="overflow-hidden bg-[#fffaf2] text-[#402b22]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="grain" aria-hidden="true" />
 
       {/* TOP BAR */}

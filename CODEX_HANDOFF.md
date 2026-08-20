@@ -109,6 +109,7 @@ Never expose `SUPABASE_SERVICE_ROLE_KEY` to browser code.
 3. **Unverified content.** Exact address, product inventory/prices, offer validity, reviews, business claims, and legal-policy links need owner confirmation.
 4. **Build issue in this workspace.** `npm.cmd run build` starts compilation but fails with `EINVAL: invalid argument, readlink '.next/build-manifest.json'`. This appears related to Windows/OneDrive handling of generated `.next` files rather than an application compile error.
 5. **No automated tests.** The project has no tests. The `lint` script uses `next lint`, which is not the current Next.js lint workflow and should be replaced with an explicitly configured ESLint command.
+6. **SEO crawlability issues.** Policy pages (delivery-policy, privacy-policy, terms, refund-policy) and admin pages lacked sufficient internal links in raw HTML, affecting search engine discoverability. Fixed by adding navigation headers with links back to home/admin on all affected pages.
 
 ## Exact next steps
 
@@ -158,6 +159,11 @@ Never expose `SUPABASE_SERVICE_ROLE_KEY` to browser code.
 - Terms & Conditions working.
 - Refund Policy working.
 - Delivery Policy working.
+
+### SEO Improvements — August 2026
+- Added navigation headers with internal links to all policy pages (delivery-policy, privacy-policy, terms, refund-policy) and admin pages (admin/orders, admin/products, admin/reviews).
+- Each page now includes a header with links back to home (or admin dashboard) for improved crawlability and PageRank distribution.
+- Policy pages now have `robots: { index: true, follow: true }` metadata allowing search engines to crawl and follow links.
 
 ### Known Issues / TODO
 - MSG91 OTP authentication currently returns 401 AuthenticationFailure.
